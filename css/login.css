@@ -1,0 +1,80 @@
+@font-face {
+    font-family: '양진체';
+    src: url('https://fastly.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    margin : none;
+    padding: none;
+    box-sizing: border-box;
+    font-family: '양진체','Courier New', Courier, monospace;
+}
+
+
+
+#app{
+    
+    width: 560px;
+    height:100vh;
+    margin:auto;
+    padding:30px;
+}
+#app > #nav{
+    position: relative;
+    background-color: rgb(238,238,238);
+    padding-left:30px;
+    margin-bottom: 30px;
+    height:81.25px;
+}
+#header{
+    height:81.25px;
+}
+#menu{
+    position: absolute;
+    top:0;
+    right:0;
+    padding:23px;
+}
+form{
+    padding:10px;
+}
+#content {
+    padding:30px;
+}
+#section1 {
+    margin-bottom: 100px;
+}
+#section1 input{
+    border:none;
+    border-bottom: 1px solid rgb(210,210,210);
+    background-color: unset;
+    /* rem = 배수 */
+    font-size:1.5rem;
+    padding:10px;
+    height:40px;
+    width:100%;
+    border-radius: 5px 5px 0 0;
+    padding:10px;
+    margin-bottom: 30px;
+    
+}
+button{
+    display:block;
+    margin-top : 10px;
+    padding:10px;
+    font-size:14pt;
+    border-radius: 10px;
+    background-color: antiquewhite;
+}
+button:hover{
+    background-color: azure;
+    transition-duration: 1s;
+    cursor: pointer;
+}
+
+#app > #footer {
+    background-color: rgb(238,238,238);
+    padding:10px;
+    margin-top: 10px;
+}
