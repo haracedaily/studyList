@@ -228,9 +228,10 @@ button {
 	}
 }
 
-.tag:focus{
-    background-color: black;
+.tag:hover{
+    background-color: rgb(167, 144, 255);
 }
+
 
 
 .toDoTitle{
@@ -279,5 +280,7 @@ button {
 	display: flex;
 	justify-content: flex-start;
 }
-
+#month{
+	border:none;
+}
 /****** */

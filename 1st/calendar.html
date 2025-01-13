@@ -43,11 +43,26 @@
             <div class="datepicker">
                 <div class="datepicker-top">
                     <div class="btn-group">
-                        <button class="tag" id="test1">Today</button>
+                        <button class="tag" id="test1" onclick="writeCalendar()" >Today</button>
                     </div>
                     <div class="month-selector">
                         <button class="arrow" onclick="prevMonth()"><i class="material-icons">chevron_left</i></button>
-                        <span id="month-name">2025년 1월</span>
+                        <span id="month-name">2025년 1월
+                        </span>
+                        <select title="d" name="month" id="month" onchange="rewriteCalendar()">
+                            <option value="1">1월</option>
+                            <option value="2">2월</option>
+                            <option value="3">3월</option>
+                            <option value="4">4월</option>
+                            <option value="5">5월</option>
+                            <option value="6">6월</option>
+                            <option value="7">7월</option>
+                            <option value="8">8월</option>
+                            <option value="9">9월</option>
+                            <option value="10">10월</option>
+                            <option value="11">11월</option>
+                            <option value="12">12월</option>
+                        </select>
                         <button class="arrow" onclick="prefMonth()"><i class="material-icons">chevron_right</i></button>
                     </div>
                 </div>
@@ -97,31 +112,35 @@
                 </div>
             </div>
             <div id="memberBtn">
-                <button class="btn purple">유다예</button>
-                <button class="btn pastel">최준호</button>
-                <button class="btn blue">노진욱</button>
+                <button class="btn purple" onclick="changeBackColor('#B9A6FF','purple')">유다예</button>
+                <button class="btn pastel" onclick="changeBackColor('#FFC2C2','pastel')">최준호</button>
+                <button class="btn blue" onclick="changeBackColor('#C3C6FF','blue')">노진욱</button>
             </div>
             <hr>
             <div id="toDoList">
                 <div class="toDoTitle toDoToday">
-                    <h4>2025년 01월 09일</h4>
+                    <h4 id="toDoTitle1">2025년 01월 09일</h4>
                 </div>
                 <div class="toDoLine toDoLineToday"></div>
                 <div class="toDoContent toDoToday">
-                    <h4>일정 내용</h4>
+                    <h4 id="toDoContent1">일정 내용</h4>
                 </div>
                 
                 <div class="toDoTitle">
-                    <h4>2025년 01월 10일</h4>
+                    <h4 id="toDoTitle2">2025년 01월 10일</h4>
                 </div>
                 <div class="toDoLine"></div>
-                <div class="toDoContent"></div>
+                <div class="toDoContent">
+                    <h4 id="toDoContent2"></h4>
+                </div>
 
                 <div class="toDoTitle">
-                    <h4>2025년 01월 11일</h4>
+                    <h4 id="toDoTitle3">2025년 01월 11일</h4>
                 </div>
                 <div class="toDoLine"></div>
-                <div class="toDoContent"></div>
+                <div class="toDoContent">
+                    <h4 id="toDoContent3"></h4>
+                </div>
             </div>
         </div>
         <div id="footer">
