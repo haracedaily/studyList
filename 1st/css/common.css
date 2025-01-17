@@ -1,0 +1,72 @@
+
+/*****  common css */
+
+*, *:after, *:before {
+	box-sizing: border-box;
+    margin:0;
+    padding:0;
+	font-family: "Noto Sans Korean", sans-serif;
+}
+
+#time {
+    width: 412px;
+    min-height: 917px;
+    margin: 0 auto;
+	border: 1px solid #ddd;
+}
+
+#time>#header {
+    height: 80px;
+    width: 412px;
+    background-color: rgb(132, 102, 255);
+}
+
+#time>#header>#menu {
+    float: right;
+    padding-right: 15px;
+    padding-top: 28px;
+}
+
+#time>#content {
+    min-height: 787px;
+    width: 412px;
+    background-color: white;
+	padding-top:5px;
+}
+
+
+#time>#footer {
+    height: 65px;
+    width: 412px;
+    background-color: rgb(167, 144, 255);
+}
+
+#time>#footer>img {
+    float: right;
+    padding-right: 15px;
+    padding-top: 28px;
+}
+
+.btn{
+	width:75px;
+	margin:5px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	/* border:none; */
+}
+
+.purple{
+	background-color: #D198FD;
+}
+
+.blue{
+	background-color: #C3C6FF;
+}
+
+.pastel{
+	background-color: #FFC2C2;
+}
+
+.green{
+    background-color: #C5FFE8;
+}

@@ -1,0 +1,42 @@
+#planner_title{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#planner_date{
+    font-size: 10pt;
+    background-color: #f1e7ff;
+    border-radius: 5px;
+    padding:3px;
+}
+#current-planner{
+    
+    padding:5px 15px;
+    display:grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: repeat(28, minmax(20px,auto));
+}
+.planner_items{
+    /* background-color: #f8f4ff; */
+    /* box-shadow: inset 0 0 2px  rgba(100, 10, 30, 1); */
+    border:1px solid #aaa;
+    /* background-image: linear-gradient(to bottom, #f1e9f4 95%, #eaeaea 100%),
+        repeating-linear-gradient(to bottom, #f1cfff 0, #f1cfff 1px, transparent 1px, transparent 30px); */
+    /* border:1px solid #595066; */
+    
+}
+.planner_items textarea{
+    width:100%;
+    height:57px;
+    scrollbar-width: 0;
+    resize: none;
+    background-color: transparent;
+
+}
+.time{
+    text-align: center;
+}
+
+.planner_items textarea:hover{
+    cursor: url(/1st/image/pen_sm.png), auto;
+}
