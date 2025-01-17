@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <style>
+        #container{
+            margin: 0 auto;
+            width:480px;
+            background-color: rgb(230,100,100);
+            
+        }
+        #header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;    
+            color:rgb(226,236,236);
+           /*  position: relative; */
+        }
+        /* #header>#center-menu{
+            position:absolute;
+            top:0;
+            width:480px;
+            text-align: center;
+        }
+        #header>#right-menu{
+            position:absolute;
+            top:0;
+            right:0;
+        } */
+        #sub_header{
+            display:none;
+            /* overflow: hidden; */
+        }
+        /* #sub_header>ul{
+            display:flex;
+            justify-content: space-around;
+        } */
+        #sub_header>ul>li{
+            float:left;
+            
+        }
+        #sub_header>ul>li>a{
+            display:block;
+            width:120px;
+            text-align:center;
+            padding:15px 0;
+        }
+        #menu:checked ~ #sub_header{
+            display: block;
+            /* animation-name:abc;
+            animation-duration:30ms */
+        }
+       /*  @keyframes abc {
+            from{
+                display:none;
+            }to{
+                display:block;
+            }
+            
+        } */
+    </style>
+    <script src="https://kit.fontawesome.com/582d1bfdc8.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+</head>
+<body>
+<div id="container">
+    <input type="checkbox" name="" id="menu" hidden>
+    <div id="header">
+        <div id="left-menu">
+            <h3 style="line-height:60px; padding-left:10px;">
+                왼쪽
+                <i class="fa-brands fa-twitter fa-2x"></i>
+                <i class="fa-solid fa-mobile fa-2x"></i>
+                <i class="fa-regular fa-face-smile fa-2x"></i>
+            </h3>
+        </div>
+        <div id="center-menu">
+            <!-- <h1>PMH</h1> -->
+            <a href="index.html">
+                <h1 style="line-height:60px;">
+                    PMH
+                </h1>
+            </a>
+        </div>
+        <div id="right-menu">
+            <label for="menu" style="cursor:pointer;">
+                <h3 style="line-height:60px;">
+                    오른쪽
+                    <i class="fa-solid fa-bars fa-2x"></i>
+                </h3>
+            </label>
+        </div>
+    </div>
+    <div id="sub_header">
+        <ul>
+        <li><a href="html.html" style="background-color: rgb(200,90,90);">HTML</a></li>
+        <li><a href="css.html" style="background-color: rgb(230,150,90);">CSS</a></li>
+        <li><a href="javascript.html" style="background-color: rgb(200,90,90);">JAVASCRIPT</a></li>
+        <li><a href="github.html" style="background-color: rgb(230,150,90);">GITHUB</a></li>
+    </ul>
+    </div>
+    <div id="content">
+        <h1>GITHUB</h1>
+        <p>
+            깃허브(GitHub, /'ɡɪtˌhʌb/, 원래 이름: Logical Awesome LLC)[1]는 루비 온 레일스로 작성된 분산 버전 관리 툴인 깃 저장소 호스팅을 지원하는 웹 서비스이다. 깃허브는 영리적인 서비스와 오픈소스를 위한 무상 서비스를 모두 제공한다. 2009년의 깃 사용자 조사에 따르면 깃허브는 가장 인기있는 깃 저장소 호스팅 서비스이다.[2] 또한 2011년의 조사에서도 가장 인기있는 오픈 소스 소프트웨어 인터넷 호스팅 서비스로 꼽혔다.[3]
+
+깃이 텍스트 명령어 입력 방식인데 반해, 깃허브는 그래픽 유저 인터페이스(GUI)를 제공한다. 깃허브는 페이스트빈(pastebin)과 유사한 서비스인 기스트(Gist)와 위키를 각 저장소마다 운영하고 있으며, 깃 저장소를 통해 고칠 수 있다.
+
+깃허브 회사는 2008년 톰 프레스턴워너(Tom Preston-Werner), 크리스 완스트래스(Chris Wanstrath), 피제이 하이엣(PJ Hyett)이 공동 설립했다. (Andreessen Horowitz) 등에서 투자를 받았다. 2010년 1월부터 깃허브는 GitHub, Inc. 라는 이름으로 운영되고 있다.[4] 깃허브의 마스코트는 고양이 머리에 문어 다리가 달린 옥토캣(Octocat)이다. 본사는 미국 캘리포니아주 샌프란시스코에 있다.
+
+2018년 6월 4일, 마이크로소프트는 75억 달러에 깃허브를 인수하였다[5]
+        </p>
+    </div>
+    <div id="footer">
+    </div>
+</div>
+</body>
+</html>
