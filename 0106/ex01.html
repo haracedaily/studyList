@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td{
+            border : 1px solid black;
+            border-collapse: collapse;
+        }
+        table{
+            margin:auto;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 style="font-size:50px; font-family: '궁서';">테이블복습</h1>
+        <h2 style="font-size:50px; font-family: '맑은고딕'">테이블복습</h2>
+        <p>tr이 행태그 table 테이블태그 th열제목 가운데정렬 진하게 td 왼쪽 정렬</p>
+    </div>
+    <table style="width:90%">
+        <colgroup>
+        <col width="20%"/>
+        <col width="20%"/>
+        <col width="20%"/>
+        <col width="20%"/>
+        <col width="20%"/>
+        </colgroup>
+        <caption>
+        테이블 복습
+        </caption>
+        <thead>
+            <tr>
+                <th>a</th>
+                <th>b</th>
+                <th>c</th>
+                <th>d</th>
+                <th>e</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2">행1열1</td>
+                <td rowspan="3">행1열2</td>
+                <td>행1열3</td>
+                <td>행1열4</td>
+            </tr>
+            <tr>
+                <td>행2열1</td>
+                <td>행2열2</td>
+                <td>행2열3</td>
+                <td>행2열4</td>
+            </tr>
+            <tr>
+                <td>행3열1</td>
+                <td>행3열2</td>
+                <td>행3열3</td>
+                <td>행3열4</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+</html>

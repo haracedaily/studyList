@@ -1,0 +1,52 @@
+<!-- ctrl a ctrl / alt shift a shift page up -->
+ <!--  shift page down  -->
+   <!-- home end -->
+    <!-- shift alt f 자동 정렬 -->
+     <!-- shift tab 내어쓰기 -->
+      <!-- tab 들여쓰기 -->
+       <!-- ctrl w 닫기 ctrl t new tab ctrl shift t 다시 열기 ctrl u 코드 -->
+<!DOCTYPE html> <!-- use html vers 5 -->
+<html lang="en"> <!-- use language English -->
+<head>
+    <meta charset="UTF-8"> <!-- user char setting utf-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doc</title>
+    <style>
+        p:hover{
+           /*  background-color: bisque; */
+            cursor: pointer;
+          /*   color: black; */
+            transition: 0.2s;
+        }
+        p{
+            background-color: red;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <h1>제목</h1>
+    <p style="font-weight: bold; background-color: red; color: white;">HTML CSS JAVASCRIPT</p>
+    <a href="ex03.html" target="_blank">EX03</a>
+    <!-- underbar _blank new tab -->
+</body>
+</html>
+<script>
+    console.log("테스트입니다.");
+    const p = document.querySelector("p");
+    p.addEventListener("click",()=>{
+     
+        if(p.style.backgroundColor=='blue'){
+            p.style.backgroundColor="red";
+            p.style.color="black";
+            p.style.width="100%";
+            p.style.textAlign="left";
+        }else{
+            p.style.backgroundColor="blue";
+            p.style.color ="yellow";
+            p.style.width="30%";
+            p.style.textAlign="center";
+        }
+    })
+    
+</script>

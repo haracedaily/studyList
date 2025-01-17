@@ -1,0 +1,75 @@
+@font-face {
+    font-family: '양진체';
+    src: url('https://fastly.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 560px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+* {
+    font-family: '양진체', 'Courier New', Courier, monospace;
+}
+
+/* #container > div {
+    background-color: red;
+}*/
+
+#container>#nav {
+    overflow: hidden;
+    background-color: rgb(238, 238, 238);
+    
+}
+#container>#nav>div {
+    padding:20px;
+    
+}
+#container>#nav h1 {
+    display:inline;
+    
+}
+#container>#footer {
+    background-color: rgb(238, 238, 238);
+    padding:20px;
+    text-align: center;
+}
+
+#section2 {
+    height: 300px;
+    padding: 20px;
+}
+
+#footer {
+    height: 80px;
+
+}
+table{
+    width:100%;
+}
+#container th,td {
+    padding:10px;
+}
+#container table,th,td{
+    border: 1px solid #999;
+    border-collapse: collapse;
+}
+th{
+    background-color: #ddd;
+}
+table{
+    margin : auto;
+}
+a::after{
+    font-style: normal;
+    color:black;
+}
