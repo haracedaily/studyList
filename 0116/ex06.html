@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        ul{
+            width:0;
+            overflow:hidden;
+            word-break: keep-all;
+            
+            background-color: rgb(100,200,100);
+            transition-property: all;
+            transition-duration: 3s;
+
+            border-width:1px;
+            border-style:solid;
+            border-color: black;
+        }
+        li{
+            list-style: none;
+        }
+        #menu:checked + ul{
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <label for="menu">메뉴</label>
+    <input type="checkbox" name="" id="menu">
+        <ul>
+            <li>메뉴1</li>
+            <li>메뉴2</li>
+            <li>메뉴3</li>
+            <li>메뉴4</li>
+        </ul>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            background-color: rgb(200,200,200);
+            animation-name: aaa;
+            animation-duration: 3s;
+           /*  animation-iteration-count: infinite; */
+        }
+        div > p{
+            color:blue;
+        }
+        #fpp:hover+p{
+            background-color: rgb(200,200,200);
+            
+            animation-name: qwerqwer;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+        #fpp ~ p {
+            text-decoration: underline;
+        }
+        @keyframes aaa{
+            from{
+                background-color: rgb(0,0,0);
+            }
+            to{
+                background-color: rgb(200,1,200);
+            }
+        }
+        @keyframes qwerqwer{
+            from{
+                background-color: rgb(0,0,0);
+            }
+            to{
+                background-color: rgb(200,200,200);
+                transform: rotate(30deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p id="fpp">
+            Eiusmod sint sunt minim sit do exercitation sint Lorem proident.
+        </p>
+        <p>Esse aliquip cupidatat incididunt ipsum aliqua do.</p>
+        <section>
+            <p>Cillum consectetur excepteur in ea velit id sint exercitation eu officia.</p>
+        </section>
+        <p>
+            Fugiat esse do adipisicing esse eu aute veniam anim.
+        </p>
+        <p>
+            Ut officia eiusmod nostrud nisi nostrud sint ad elit esse cillum sit.
+        </p>
+    </div>
+</body>
+</html>

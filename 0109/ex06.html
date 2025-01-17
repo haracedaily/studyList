@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 700px;
+            background-color: rgb(236, 236, 236);
+            margin: 0 auto;
+        }
+
+        fieldset > legend{
+            font-size:22px;
+            color:rgb(200,50,250);
+        }
+        ul{
+            list-style-type: none;
+        }
+        label.title{
+            font-weight: bold;
+        }
+        li{
+            margin:30px;
+        }
+        textarea{
+            font-size: 22px;
+            width: 100%;
+            height:150px;
+            resize: vertical;
+            outline: none;
+        }
+        #male:checked ~ .female-div{
+                display:none;
+        }
+        #female:checked ~ .male-div{
+            display:none;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>상품주문서</h1>
+        <form action="">
+            <fieldset>
+                <legend>개인정보</legend>
+                <ul>
+                    <li>
+                        <label class="title" for="name">
+                            이름
+                        </label>
+                        <input type="text" id="name">
+                    </li>
+                    <li>
+                        <label for="tel">
+                            연락처
+                        </label>
+                        <input type="tel" id="tel">
+                    </li>
+                    <li>
+                        <label for="male">남</label>
+                        <input type="radio" name="gender" id="male" checked>
+                        <label for="female">여</label>
+                        <input type="radio" name="gender" id="female">
+                        <div class="male-div">남자입니다</div>
+                        <div class="female-div">여자입니다</div>
+                    </li>
+                </ul>
+            </fieldset>
+            <fieldset>
+                <legend>주문정보</legend>
+                <ul>
+                    <li>
+                        <label for="name">
+                            주소
+                        </label>
+                        <input type="text" id="name">
+                    </li>
+                    <li>
+                        <label for="tel">
+                            전화번호
+                        </label>
+                        <input type="tel" id="tel">
+                    </li>
+                    <li>
+                        <label for="memo">
+                            메모
+                        </label>
+                        <textarea name="" id="memo"></textarea>
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>

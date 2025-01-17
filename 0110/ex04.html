@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+#a1:checked ~ ul > li:nth-child(1){
+    text-decoration: line-through;
+}
+#a2:checked ~ ul > li:nth-child(2){
+    text-decoration: line-through;
+}
+#a3:checked ~ ul > li:nth-child(3){
+    text-decoration: line-through;
+}
+p{
+    text-transform: capitalize;
+    text-shadow:10px 10px 5px blue;
+}
+</style>
+<body>
+    <h1>체크하면 취소선 </h1>
+    <div>
+        <input type="radio" name="aa" id="a1">
+        <input type="radio" name="aa" id="a2">
+        <input type="radio" name="aa" id="a3">
+        <ul>
+            <li>공부해야함</li>
+            <li>운동해야함</li>
+            <li>영화봐야함</li>
+        </ul>
+    </div>
+    <p>text text text</p>
+    <table>
+        <tr style="width:200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia eum sed tempore excepturi dolorem, modi quia vitae error voluptatem quaerat illo quasi labore numquam repudiandae, corrupti dolore nihil debitis fugit?
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding:none;
+        margin:none;
+    }
+    select{
+        overflow-y: hidden;
+        text-align: center;
+        width:150px;
+        background-color: rgb(236, 236, 236);
+        width:100px;
+        height: 60px;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <form action="ex02.html">
+        <h3>여러과목을 선택할 수 있습니다.</h3>
+        <input type="text" name="id" id="" placeholder="아이디">
+        <input type="text" name="pw" id="" placeholder="비밀번호">
+        <select name="" id="" multiple>
+            <option value="ko">국어</option>
+            <option value="en">영어</option>
+            <option value="ma">수학</option>
+        </select>
+        <!-- <input type="submit" value="전송input"> -->
+        <input type="reset" value="초기화">
+        <br/>
+        <input type="text" id="num1" onchange="sum1(this)">
+        <br/>
+        <input type="text" id="num2" onchange="sum2(this)">
+        <br/>
+        <button>😃✨😆🤔🤢🎁전송</button>
+        <button>리셋</button>
+        <button onclick="aaa(this)" type="button">그냥버튼</button>
+    </form>
+</body>
+<script>
+    function aaa(a){
+            console.log(Date())
+            alert("출력합니다.")
+            alert(Number(a.value)+Number(document.getElementById("num2").value))
+    }
+    function sum1(a){
+    console.log(Number(a.value)+Number(document.getElementById("num2").value))
+    }
+    function sum2(a){
+    console.log(Number(a.value)+Number(document.getElementById("num1").value))
+    }
+    
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            display:flex;
+            justify-content: center;
+            width:560px;
+        }
+        li{
+            /* float:left; */
+            text-align: center;
+            list-style-type: none;
+            width:25%;
+            /* background-color: rgb(200,100,100); */
+        }
+        ul li a{
+            border: 1px solid black;
+            display: block;
+            width:100%;
+            padding: 20px 0;
+            background-color: rgb(200,100,100);
+        }
+        ul li:first-child a{
+            border-radius: 15px 0 0 15px;
+        }
+        ul li:last-child a{
+            border-radius: 0 15px 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="">HOME</a></li>
+        <li><a href="">HTML</a></li>
+        <li><a href="">CSS</a></li>
+        <li><a href="">Jquery</a></li>
+    </ul>
+</body>
+</html>

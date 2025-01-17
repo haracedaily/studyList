@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .img1{
+            transform: translate(30px,100px);
+            animation-name: aa;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+        .img2{
+            animation-name: bb;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+        .img3:hover{
+            transform:translate(50px, 0);
+        }
+        .img3{
+            animation-name: cc;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes aa{
+            from{
+                transform: rotate(30deg);
+            }
+            to{
+                transform:translate(150px,200px);
+            }
+        }
+        @keyframes cc {
+            0%{
+                transform: scale(1) rotate(0deg);
+            }
+            50%{
+                transform:scale(3) rotate(180deg);
+            }
+            
+           /*  from{
+                transform: scale(1);
+            }
+            to{
+                transform: scale(3);
+            } */
+        }
+        @keyframes bb {
+            from{
+                transform: translate(200px,200px);
+            }
+            to{
+                transform: translate(100px,100px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="/images/tiger.png" alt="" class="img1">
+    <img src="/images (2)/모모냥-모모찌wlq.gif" alt="" class="img3">
+    <img src="/images (2)/모찌-모모찌-울기.gif" alt="" class="img2">
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            position:absolute;
+            width:100px;
+            height:100px;
+        }
+        #b1{
+            background-color: rgb(100,200,100);
+            z-index: 2;
+        }
+        #b2{
+            background-color: rgb(200,100,100);
+            z-index: 1;
+            left:30px;
+            top:30px;
+        }
+        #b3{
+            background-color: rgb(100,100,200);
+            left:70px;
+            top:70px;
+            z-index:3;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="b1">1</div>
+    <div class="box" id="b2">2</div>
+    <div class="box" id="b3">3</div>
+</body>
+</html>
