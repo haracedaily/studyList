@@ -18,29 +18,34 @@
 </head>
 
 <body>
-
     <div id="time">
         <div id="header">
             <div id="menu">
                 <a href="menu.html"><img src="image/menu.png" alt=""></a>
             </div>
         </div>
+        <div id="memberBtn">
+            <button class="btn purple" onclick="changeBackColor('#B9A6FF','purple')">유다예</button>
+            <button class="btn pastel" onclick="changeBackColor('#FFC2C2','pastel')">최준호</button>
+            <button class="btn blue" onclick="changeBackColor('#C3C6FF','blue')">노진욱</button>
+            <button class="btn green" onclick="changeBackColor('#C5FFE8','green')">박재준</button>
+        </div>
         <div id="content">
             <div id="planner">
                 <div id="planner_title">
-                    <div id="planner_name">
-                        <h4>Today's Plan</h4>
+                    <div id="planner_name" onclick="hideDate()">
+                        <h4 style="color:black;">Today's Plan</h4>
                     </div>
                     <div id="planner_date">
-                        <div style="font-size: 8pt;">Date</div>
-                        <input type="date" id="date" style="border:none; background-color: inherit;">
+                        <div style="font-size: 8pt; color:black;">Date</div>
+                        <input type="date" id="date" style="border:none; background-color: inherit; color:black;">
                     </div>
                 </div>
                 <div id="current-planner">
                     <div class="planner_items time">AM 07-08</div>
-                    <div class="planner_items"><textarea name="" id="" style="border:none;" rows="3" maxlength="50" width="100" onkeydown="limit(this)"></textarea></div>
+                    <div class="planner_items"><textarea name="" id="" style="border:none;" class="dd" rows="3" maxlength="50" width="100" ></textarea></div>
                     <div class="planner_items time">AM 08-09</div>
-                    <div class="planner_items"><textarea name="" id="" style="border:none;" rows="3" maxlength="50" width="100" onkeydown="limit(this)"></textarea></div>
+                    <div class="planner_items"><textarea name="" id="" style="border:none;" class="dd" rows="3" maxlength="50" width="100" ></textarea></div>
                     <div class="planner_items time">AM 09-10</div>
                     <div class="planner_items"><textarea name="" id="" style="border:none;" rows="3" maxlength="50" width="100" onkeydown="limit(this)"></textarea></div>
                     <div class="planner_items time">AM 10-11</div>
@@ -65,16 +70,24 @@
                     <div class="planner_items"><textarea name="" id="" style="border:none;" rows="3" maxlength="50" width="100" onkeydown="limit(this)"></textarea></div>
                 </div>
             </div>
+            <div id="to_do_list">
+                <div id="to_do_tape"></div>
+                <h4>TO DO LIST</h4>
+                <div id="to_do_content">
+                    <ul id="to_do_ul">
+                        <li><input type="text" value="" class="li_content"></li>
+                    </ul>
+                </div>
+            </div>
             <div id="for_tomorrow">
                 <div class="for_tomorrow_title">
-                    <h4>FOR TOMORROW</h4>
+                    <h4>Memo</h4>
                 </div>
-                <div class="for_tomorrow_content">
-
+                <div id="for_tomorrow_content">
+                    <textarea name="" id="" cols=""rows="6"></textarea>
                 </div>
             </div>
             <div id="top_priorities"></div>
-            <div id="to_do_list"></div>
             <div id="note"></div>
         </div>
         <div id="footer">

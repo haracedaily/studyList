@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(30, 30, 30);
+            padding:20px;
+            display: inline-block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #header {
+            padding: 10px 30px;
+            background-color: aquamarine;
+        }
+
+        #menu {
+            position: relative;
+            background-color: rgb(200,100,130);
+            height:60px;
+        }
+
+
+
+
+        #right-menu {
+            background-color: rgb(10,100,30);
+            float: right;
+            position:absolute;
+            right:0;
+        }
+        #right-menu>ul{
+            overflow: hidden;
+        }
+        #right-menu>ul>li {
+            float: right;
+
+        }
+
+        #left-menu {
+            background-color: rgb(10,100,30);
+            float: left;
+            position: absolute;
+            left:0;
+        }
+        #left-menu>ul{
+            overflow: hidden;
+        }
+        #left-menu>ul>li {  
+            float: left;
+        }
+
+        a {
+            padding: 20px;
+        }
+
+        #content {
+            clear: both;
+            overflow: hidden;
+            min-width: 750px;
+        }
+
+        #content>div {
+            float: left;
+        }
+
+        #left {
+            width: 200px;
+            background-color: rgb(100, 150, 100);
+        }
+
+        #right {
+            padding-left: 10px;
+            margin-right: -200px;
+            width: 100%;
+            background-color: rgb(50, 200, 150);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+    pc화면
+    모바일 화면
+    태블릿 화면
+
+    position relative absolute
+    float left -> overflow hidden
+    display flex
+    transform
+    translate
+    animation
+    transition
+    animation play state paused
+    grid row col 
+    @media query screen
+    overflow hidden 내용부분만큼 높이 설정됨
+    @import url
+
+    -> 높이 설정 필요함
+position relative
+position absolute
+
+overflow hidden -> 내용 부분만큼 높이 설정됨
+float:left
+float:right
+
+display inline -> 넓이를 줘도 변경 X
+display inline-block 줘서 -> 넓이도 변경가능하게
+
+transition 
+animate 
+
+그리드 시스템 
+row col
+
+@media-> 반응형웹
+@import 다른 css가지고 올때 
+
+
+     -->
+    <div id="container">
+        <div style="position:fixed; width:100%;">
+        <div id="header">
+            <h1>Title</h1>
+        </div>
+            <div id="menu" style="position:relative;">
+
+                <div id="left-menu">
+                    <ul>
+                        <li><a href="">JavaScript</a></li>
+                        <li><a href="">React</a></li>
+                        <li><a href="">Node</a></li>
+                    </ul>
+                </div>
+                <div id="right-menu">
+                    <ul>
+                        <li><a href="">GitHub</a></li>
+                        <li><a href="">Aws</a></li>
+                        <li><a href="">Docker</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="content" style="overflow-y: scroll;">
+            <div id="left">
+                <h1>Title</h1>
+                <p>Dolore commodo cillum est cillum minim.</p>
+            </div>
+            <div id="right">
+                <div style="padding-right:200px;">
+                    <h1>lorem lorem</h1>
+                    <p>Sit sunt est qui culpa nisi aliqua ullamco ut adipisicing fugiat minim voluptate commodo.</p>
+                    <h1>lorem lorem</h1>
+                    <p>Sit sunt est qui culpa nisi aliqua ullamco ut adipisicing fugiat minim voluptate commodo.</p>
+                    <h1>lorem lorem</h1>
+                    <p>Sit sunt est qui culpa nisi aliqua ullamco ut adipisicing fugiat minim voluptate commodo.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
