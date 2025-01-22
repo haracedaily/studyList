@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        #wrap{
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-areas:
+            "item1 item1 item2"
+            "item3 item3 item3"
+            "item4 . item5";
+        }
+        .items{
+            padding:10px;
+            background-color: rgb(100,200,200);
+        }
+        .items:nth-child(2n+1){
+            background-color: rgb(200,100,200);
+        }
+        .item1{
+            grid-area: item1;
+        }
+        .item2{
+            grid-area: item2;
+        }
+        .item3{
+            grid-area: item3;
+        }
+        .item4{
+            grid-area: item4;
+        }
+        .item5{
+            grid-area: item5;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="items item1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus velit delectus at ipsam odit vel eius ad impedit amet ipsum, perspiciatis sit veniam voluptatem obcaecati itaque maiores hic quisquam. Rem?</div>
+        <div class="items item2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus ratione illum nulla libero, suscipit animi distinctio ullam accusamus! Velit ad ipsam non eos quos illo necessitatibus. Laudantium dolor eum libero.</div>
+        <div class="items item3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores blanditiis natus possimus nostrum, voluptates quibusdam? Sapiente nobis perferendis, dolores rem suscipit expedita vitae! Modi id optio beatae eius laudantium dolor.</div>
+        <div class="items item4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et autem, dignissimos temporibus beatae tenetur, similique necessitatibus perspiciatis vel rerum architecto exercitationem odit quos cupiditate quibusdam! Nihil deleniti assumenda pariatur a!</div>
+        <div class="items item5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et autem, dignissimos temporibus beatae tenetur, similique necessitatibus perspiciatis vel rerum architecto exercitationem odit quos cupiditate quibusdam! Nihil deleniti assumenda pariatur a!</div>
+        
+    </div>
+</body>
+</html>

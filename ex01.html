@@ -2,77 +2,260 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/ex01.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    @font-face {
+      font-family: "yangjin";
+      src: url("yangjin.woff");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "yangjin";
+    }
+
+    li {
+      list-style-type: none;
+    }
+
+    a {
+      color: rgb(30, 30, 30);
+      text-decoration: none;
+    }
+
+    img {
+      border: 0;
+    }
+
+    #header {
+      width: 960px;
+      margin: 20px auto;
+      background-color: rgb(248, 248, 248);
+      position: relative;
+
+      height: 140px;
+    }
+
+    #header>#main-title {
+      position: absolute;
+      top: 20px;
+      left: 40px;
+      cursor: pointer;
+    }
+
+    #header>#sub-title {
+      position: absolute;
+      bottom: 20px;
+      left: 80px;
+      cursor: pointer;
+    }
+
+    #header>#global-nav {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+    }
+
+    #header>#global-nav>ul>li {
+      float: left;
+    }
+
+    #header>#global-nav>ul>li>a {
+      display: block;
+      padding: 10px 30px;
+      border: 1px solid black;
+    }
+
+    #header>#global-nav>ul>li>a:hover {
+      background-color: rgb(100, 250, 100);
+      color: rgb(236, 236, 236);
+    }
+
+    #header>#global-nav>ul>li:first-child>a {
+      border-radius: 5px 0 0 5px;
+    }
+
+    #header>#global-nav>ul>li:last-child>a {
+      border-radius: 0 5px 5px 0;
+    }
+
+    #header>#main-nav {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    #header>#main-nav>ul>li {
+      float: left;
+    }
+
+    #header>#main-nav>ul>li>a {
+      border: 1px solid rgb(30, 30, 30);
+      padding: 10px 20px;
+      display: block;
+    }
+
+    #header>#main-nav>ul>li:first-child>a {
+      border-radius: 5px 0 0 5px;
+    }
+
+    #header>#main-nav>ul>li:last-child>a {
+      border-radius: 0 5px 5px 0;
+    }
+
+    #content {
+      background-color: rgb(250, 180, 250);
+      width: 960px;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+
+    #content>#section {
+      background-color: rgb(255, 255, 180);
+      float: left;
+    }
+
+    #content>#section>div{
+      border:1px solid rgb(30,20,30);
+      margin:20px;
+      padding:30px;
+    }
+
+    #content>#section>div>h1{
+      padding-bottom:20px;
+    }
+    #content>#aside {
+      background-color: rgb(180, 255, 255);
+      float: right;
+    }
+
+    
+
+    #footer {
+      width: 960px;
+      margin: 20px auto;
+      text-align: center;
+      background-color: rgb(200, 250, 250);
+    }
+
+    #footer>h1 {
+      padding: 20px;
+    }
+
+    #footer>p {
+      padding: 20px;
+    }
+    table,th,td{
+      border:1px solid black;
+      vertical-align: top;
+      width:100px;
+      table-layout: fixed;
+      word-break: break-all;
+    }
+    td{
+      height:400px;
+      width:40px;
+    }
+    #aaaa{
+      display: flex;
+      align-content: space-between;
+    }
+    
+  </style>
 </head>
 
 <body>
-    <div id="container">
-        <div id="nav">
-            <div style="float:left;">
-                <img src="home.png" height="35" alt="">
-            </div>
-            <div style="float:right;">
-                <a href="">
-                    <h1>메뉴1</h1>
-                </a>
-                <a href="">
-                    <h1>메뉴2</h1>
-                </a>
-            </div>
-        </div style="clear:both;">
-        <div id="section">
-            <div style="overflow: hidden;">
-                <figure style="float:left;">
-                    <img src="main1.gif" alt="">
-                    <figcaption>배고픈데</figcaption>
-                </figure>
-                <figure>
-                    <img src="main2.gif" width="175" alt="">
-                    <figcaption>춤</figcaption>
-                </figure>
-            </div>
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit quis reiciendis minima, in
-                sapiente, vel assumenda velit sunt dolor maiores quisquam exercitationem, illo voluptates possimus
-                recusandae rem. Non, laudantium odit.
-            </p>
-        </div>
-        <div id="section2">
-            <table>
-                <caption>학력 사항</caption>
-                <thead>
-                    <tr>
-                        <th>출신학교</th>
-                        <th>전공</th>
-                        <th>기간</th>
-                        <th>구분</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>ㅁㅁ대학교</td>
-                        <td>컴퓨터공학</td>
-                        <td>2004.3 ~ 2008.2</td>
-                        <td>졸업</td>
-                    </tr>
-                    <tr>
-                        <td>ㅇㅇㅇ고등학교</td>
-                        <td>-</td>
-                        <td>2001.3 ~ 2004.2</td>
-                        <td>졸업</td>
-                    </tr>
-                </tbody>
-        </table>
-        </div>
-        <div id="footer">
-            <h1>
-                CopyRight By 최준호
-            </h1>
-        </div>
+  <div id="header">
+    <div id="main-title">
+      <h1>MAIN-TITLE</h1>
     </div>
+    <div id="sub-title">
+      <h3>HTML5+CSS3</h3>
+    </div>
+    <div id="global-nav">
+      <ul>
+        <li><a href="">AAA</a></li>
+        <li><a href="">BBB</a></li>
+        <li><a href="">CCC</a></li>
+        <li><a href="">DDD</a></li>
+      </ul>
+    </div>
+    <div id="main-nav">
+      <ul>
+        <li><a href="">HTML</a></li>
+        <li><a href="">CSS</a></li>
+        <li><a href="">JAVASCRIPT</a></li>
+        <li><a href="">NODE</a></li>
+        <li><a href="">REACT</a></li>
+        <li><a href="">DB</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="content">
+    <div id="section">
+      <div>
+        <h1>Section</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo minima aperiam officiis, eum voluptas
+          voluptatem placeat! Doloribus mollitia, nulla error quaerat delectus totam, eos minus fugiat, nam ut beatae
+          veniam!</p>
+      </div>
+    </div>
+    <div id="section2">
+      <div>
+        <h1>Section2</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo minima aperiam officiis, eum voluptas
+          voluptatem placeat! Doloribus mollitia, nulla error quaerat delectus totam, eos minus fugiat, nam ut beatae
+          veniam!</p>
+      </div>
+    </div>
+    <div id="section3">
+      <div>
+        <h1>Section3</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo minima aperiam officiis, eum voluptas
+          voluptatem placeat! Doloribus mollitia, nulla error quaerat delectus totam, eos minus fugiat, nam ut beatae
+          veniam!</p>
+      </div>
+    </div>
+    <div id="aside">
+      <div>
+        <h1>Aside</h1>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <h1>Footer</h1>
+    <p>COPY RIGHT By 박명회</p>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>2</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>123123123<div id="aaaa"><div id="test22" style="background-color: yellow;">234234231</div><div id="test" style="background-color: blue;"><p>dd</p><p>qwearawe</p></div></div></td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 
 </html>
