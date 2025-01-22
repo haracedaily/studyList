@@ -5,7 +5,9 @@
 }
 #planner_name:hover{
     cursor:pointer;
-    
+}
+.planner_item{
+    border-left:1px solid rgba(0,0,0,0.1);
 }
 #planner_date{
     font-size: 10pt;
@@ -94,5 +96,5 @@ ul li{
 }
 
 .planner_items textarea:hover{
-    cursor: url(/1st/image/pen_sm.png), auto;
+    cursor: url(https://haracedaily.github.io/html_test/1st/image/pen_sm.png), auto;
 }
