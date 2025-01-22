@@ -17,7 +17,7 @@
 }   
 
 #time {
-    width: 100%;
+    width: 412px;
     min-height: 917px;
     margin: 0 auto;
 	border: 1px solid #ddd;
@@ -78,4 +78,10 @@
 
 .green{
     background-color: #C5FFE8;
+}
+
+@media screen and (max-width:500px){
+    #time {
+        width: 100%;
+    }
 }
