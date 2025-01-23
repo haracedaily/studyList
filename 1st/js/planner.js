@@ -44,6 +44,7 @@ function chk(e) {
         var li = document.createElement("li");
         var input = document.createElement("input");
         input.className = "li_content";
+        input.type = "search";
         input.addEventListener("keyup", function () {
             chk(input);
         })
