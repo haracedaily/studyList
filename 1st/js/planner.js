@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 });
 
 function chk(e) {
+    alert(event.code+' \n'+event.keyCode);
     if (event.keyCode === 13 || event.code == 'enter') {
         var li = document.createElement("li");
         var input = document.createElement("input");
