@@ -62,7 +62,7 @@ button {
 	box-shadow: 0 0 2px 0 rgba(#000, .2), 0 5px 10px 0 rgba(#000, .1);
 	padding: 1rem;
     border:1px solid black;
-    margin:0 auto;
+    margin:10px auto;
 }
 
 .datepicker-top {
@@ -168,7 +168,10 @@ button {
     background-color: rgb(167, 144, 255);
 }
 
-
+#toDoList{
+	margin-top:10px;
+	padding-bottom:20px;
+}
 
 .toDoTitle{
 	min-height: 24px;
@@ -212,7 +215,7 @@ button {
 }
 
 #memberBtn{
-	margin-left:15px;
+	margin:5px 0 5px 15px;
 	display: flex;
 	justify-content: flex-start;
 }
