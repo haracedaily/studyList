@@ -18,7 +18,7 @@
 
 #time {
     width: 412px;
-    min-height: 917px;
+    min-height: 100vh;
     margin: 0 auto;
 	border: 1px solid #ddd;
 }
@@ -29,7 +29,7 @@
     background-color: rgb(132, 102, 255);
 }
 
-#time>#header>#menu {
+#time>#header>#menu img {
     float: right;
     padding-right: 15px;
     padding-top: 28px;
@@ -40,6 +40,7 @@
     width: 100%;
     background-color: white;
 	padding-top:5px;
+    
 }
 
 
