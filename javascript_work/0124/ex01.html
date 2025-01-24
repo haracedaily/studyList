@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const a = prompt('a값 입력하세요');
+        console.log("a = "+a);
+        const b = prompt('b값 입력하세요');
+        console.log("b = "+b);
+const c = Number(a);
+const d = Number(b);
+const e = c+d;
+document.writeln('덧셈 결과 : '+(c+d));
+document.write('e : '+e);
+        console.log("덧셈 결과: "+(c+d));
+
+        const value = '1,000';
+        const trans_value = Number(value);
+        if(isNaN(trans_value)){
+            document.write("<h1>"+value.replaceAll(',','')+"</h1>");
+        
+        }else{
+            document.write(trans_value);    
+        }
+        
+    </script>
+
+</body>
+</html>
