@@ -56,6 +56,10 @@
     padding-top: 28px;
 }
 
+button:hover{
+    filter:brightness(110%);
+}
+
 .btn{
 	width:75px;
 	margin:5px;

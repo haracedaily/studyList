@@ -7,9 +7,11 @@
     <title>WITH TIME</title>
     <link rel="stylesheet" href="css/common.css">
     <link href="https://cdn.jsdelivr.net/npm/noto-sans-kr@0.1.1/styles.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
-/*         * {
+        /*         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -46,14 +48,15 @@
         .form-box {
             margin-bottom: 30px;
             background-color: white;
-            border: 2px solid #868686; 
+            border: 2px solid #868686;
             border-radius: 10px;
             padding: 15px;
         }
+
         label {
             font-size: 15px;
             color: #525252;
-        } 
+        }
 
         input {
             width: 100%;
@@ -63,7 +66,7 @@
             border-bottom: 1px solid #868686;
         }
 
-        button {
+        form button {
             width: 60%;
             display: block;
             margin: 0 auto;
@@ -85,7 +88,8 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            gap: 20px;                   /* 버튼 간격 조절 */
+            gap: 20px;
+            /* 버튼 간격 조절 */
             margin-top: 20px;
         }
 
@@ -97,13 +101,15 @@
             background-color: white;
             color: #525252;
             cursor: pointer;
+
+            display: inline-block;
         }
 
         .bottom-buttons button:hover {
             background-color: #f0f0f0;
         }
 
-/*         #footer {
+        /*         #footer {
             height: 65px;
             background-color: #A790FF;
         }
@@ -123,7 +129,7 @@
             <div id="menu">
                 <a href="main.html">
                     <img src="image/menu.png" alt="menu">
-                </a>    
+                </a>
             </div>
         </div>
 
@@ -159,30 +165,37 @@
 
         <!-- Footer -->
         <div id="footer">
-            <img src="image/made.png" alt="made">
+            <img src="image/made by 띠동갑.svg" alt="made">
         </div>
     </div>
     <script>
-                function Inquiry() {
+        function Inquiry() {
             location.href = "inquiring.html";        // 문의 페이지로 이동
         }
 
         function Notice() {
-            location.href = "공지사항.html"; // 공지사항 페이지로 이동
+            swal('Not Found','현재 준비중입니다.','info');
         }
 
         function logout() {
             swal('로그아웃되었습니다.', '로그인 후 이용가능합니다.', 'warning', {
-            button: '로그인',
-        });
-            location.href = "main.html";       // 로그인 창으로 보내기 아직 로그인 페이지 못 받아서 메인*/
+                button: '로그인',
+            })
+                .then((value) => {
+                    location.href = "login.html";
+                });
         }
 
         function deleteAccount() {
+
             swal('계정이 탈퇴되었습니다.', '로그인 후 이용가능합니다.', 'error', {
-            button: '돌아가기',
-        });
-            location.href = "login.html";       // 로그인 페이지로 이동
+                button: "로그인"
+                ,
+            })
+                .then((value) => {
+                    location.href = "login.html";
+                });
+            // 로그인 페이지로 이동
         }
     </script>
 </body>
