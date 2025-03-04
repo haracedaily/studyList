@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+
+        }
+        .box{width:100px;height:100px; float:left;}
+        .box:nth-child(1){background:red;}
+        .box:nth-child(2){background:blue;}
+        .box:nth-child(3){background:green;}
+        .box:nth-child(4){background:yellow;}
+        .box:nth-child(5){background:black;}
+        .arrow-left{
+            position:absolute;
+            top:40px;
+            left:0;
+        }
+        .arrow-right{
+            position:absolute;
+            top:40px;
+            right:0;
+        }
+        .container{
+            overflow: hidden;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="container" style="position:relative;">
+
+ <div class="box"></div>
+ <div class="box"></div>
+ <div class="box"></div>
+ <div class="box"></div>
+ <div class="box"></div>
+<button class="arrow-left" onclick="left()">⬅</button>
+<button class="arrow-right" onclick="right()">➡</button>
+</div>
+<button onclick="stop()">멈춤</button>
+</body>
+</html>
+<script>
+    const $divArr = document.querySelectorAll(".box");
+    var n=1;
+    var i = 0;
+        const intervals = setInterval(()=>{
+            n++;
+            for(var j=0;j<$divArr.length;j++) {
+                $divArr[j].style.marginLeft = "0px";
+            }
+            for(i=0;i<n%5;i++) {
+                $divArr[i].style.marginLeft="-100px";
+            }
+        },1000);
+    function stop(){
+        clearInterval(intervals);
+    }
+    function left(){
+        clearInterval(intervals);
+        console.log(window.i);
+        i--;
+        if(i<0)i=4;
+        i=i%5;
+        for(var j=0;j<$divArr.length;j++) {
+            $divArr[j].style.marginLeft = "0px";
+        }
+        for(var j=0;j<i;j++) {
+            $divArr[j].style.marginLeft="-100px";
+        }
+    }
+    function right(){
+        clearInterval(intervals);
+        i++;
+        console.log(i);
+        i=i%5;
+        for(var j=0;j<$divArr.length;j++) {
+            $divArr[j].style.marginLeft = "0px";
+        }
+        for(var j=0;j<i;j++) {
+            $divArr[j].style.marginLeft="-100px";
+        }
+    }
+</script>

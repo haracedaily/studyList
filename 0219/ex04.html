@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let res = true;//confirm("예약하시겠습니까?");
+    var a = 5;//prompt("숫자를 입력하세요");
+    let b = 5;//prompt("숫자를 입력하세요");
+    console.log(`res=${res}`);
+    console.log(`a=${a}`);
+    console.log(`b=${b}`);
+
+    const result = function(a,b){//지역변수
+        a=20;
+        console.log(a);
+        console.log(window.a);
+        //var 일때 전역공간의 변수 참조 window.a
+        //let 일때 window.a참조 불가
+        //node에서는 window참조 불가 globalThis로 사용
+        //yeild
+        return a*b;
+    }(a,b);//전역변수
+    console.log(result);
+</script>
