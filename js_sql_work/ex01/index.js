@@ -1,0 +1,10 @@
+const { add,mul,sub } = require('./aa');
+const {default:div} = require('./aa');
+const value = add(10,5);
+console.log(value);
+const value2 = sub(10,7);
+console.log(value2);
+const value3 = mul(3,4);
+console.log(value3);
+const value4 = div(12,3);
+console.log(value4);
