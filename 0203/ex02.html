@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div>
+        <h1>간단한 증가 감소</h1>
+        <h3 id="h33">num</h3>
+        <button id="incre">incre</button>
+        <button id="decre">decre</button>
+    </div>
+</body>
+    <script>
+    let num = 0;
+    const aa = document.getElementById("incre");
+    const bb = document.getElementById("decre");
+    console.log(aa);
+    console.log(bb);
+    const cc= document.getElementById("h33");
+    aa.onclick=function(){
+        num++;
+        console.log('안녕');
+        cc.textContent=num;
+    }
+    bb.onclick=function(){
+        num--;
+        cc.textContent=num;
+    }
+    
+    </script>
+</html>
