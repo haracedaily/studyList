@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let $aa = document.querySelector("#aa");
+            let $bb = document.querySelector("#print");
+            let $btn = document.querySelector("#btn");
+            console.log($aa);
+            $btn.addEventListener('mouseenter', function () {
+                $bb.style.backgroundColor = 'rgb(100,200,100)';
+                $bb.style.width = 100 + "px";
+                $bb.style.height = 100 + "px";
+            })
+            $btn.addEventListener('mouseout', function () {
+                $bb.style.backgroundColor = 'rgb(100,200,200)';
+                $bb.style.width = 100 + "px";
+                $bb.style.height = 100 + "px";
+            })
+            $btn.addEventListener("click", function () {
+                $bb.innerHTML=$aa.value;
+                $bb.style.fontSize="2rem";
+            });
+            $btn.addEventListener('mouseover', function () {
+                // $print.style.width = '100px';
+                // $print.style.height = '100px';
+                // $print.style.backgroundColor = 'rgb(100, 200, 100)';
+                $print.classList.add('asdf');
+            });
+
+            $bb.addEventListener('mouseover', function () {
+                $bb.classList.add('asdf');
+            });
+
+            $bb.addEventListener('mouseout', function () {
+                $bb.classList.remove('asdf');
+            });
+
+            $btn.addEventListener('mouseout', function () {
+                $bb.classList.remove('asdf');
+            });
+
+            $btn. addEventListener('click', function () { $bb.innerHTML = $aa.value ;});
+
+        });
+    </script>
+</head>
+<body>
+    <input type="text" id="aa"/>
+    <button id="btn">누르면 input값이 div에 나온다</button>
+    <div id="print"></div>
+</body>
+</html>
