@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vite App</title>
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="/src/main.js"></script>
+<div class="myClass"></div>
+</body>
+<script>
+    const a = {};
+    a.b=10;
+    console.log(a.b);
+    a['b']=20;
+    console.log(a.b);
+    var key=Symbol('key');
+    a[key]='심볼이다';
+    console.log(`a[key] = ${a[key]}`);
+    //심볼 == 유일하다, 주민등록번호 처럼
+
+    const person = {name: '홍길동', age: 20, company: {name: '삼성전자', addr: '서울'}}
+    console.log(person.company.name);
+    person.company.name = "카카오";
+    console.log(person.company.name);
+    const element = document.querySelector('.myClass');
+
+    element.style.backgroundColor = 'red';
+    element.style.width = '100px';
+    element.style.height = '100px';
+</script>
+</html>
