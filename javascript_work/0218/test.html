@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="comment" placeholder="Enter your comment">
+<input type="text" id="writer" placeholder="Enter your writer">
+<button id="insert">insert버튼</button>
+<button id="select">select버튼</button>
+<div id="result" style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 1rem;">
+    <div style="
+        margin-top: 1rem;
+        background-color: rgb(240, 240, 240);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;padding: 1rem"
+    >
+        <span>순번 0</span>
+        <span>코멘트 qwe</span>
+        <span>작성자 qwe</span>
+        <span>작성시간 qwe</span>
+    </div>
+</div><!-- $div.innnerHTML = ascd'qcwkejrn -->
+<div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(240, 240, 240,0.5);" id="modal" class="hidden">
+    <div style="display: flex;
+                flex-direction: column;
+                width: 300px;
+                height: 150px;
+                background-color: white;
+                margin: 100px auto;
+                padding: 20px;
+                border-radius: 10px;">
+        <span id="update-id">순번 0</span>
+        <span>코멘트 <input type="text" name="" id="update-comment" placeholder="코멘트를 입력하세요"></span>
+        <span>작성자 <input type="text" name="" id="update-writer" placeholder="작성자를 입력하세요"></span>
+        <span id="update-date">작성시간 2025.02.17</span>
+        <div>
+            <button>수정</button>
+            <button onclick="updateClose();">닫기</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    // ==========================
+    // Supabase를 이용한 CRUD (생성, 읽기, 삭제) 기능 구현!
+    // ==========================
+
+    // [1] 모달창 요소 가져오기 (수정 팝업창) - 수정 기능에서 사용됨
+    const $modal = document.querySelector('#modal');
+
+    // [2] 입력 필드 및 버튼 요소 가져오기
+    const $comment = document.querySelector('#comment'); // 사용자가 입력할 코멘트
+    const $writer = document.querySelector('#writer'); // 사용자가 입력할 작성자
+    const $insert = document.querySelector('#insert'); // '삽입' 버튼 (데이터 추가)
+    const $select = document.querySelector('#select'); // '조회' 버튼 (데이터 불러오기)
+    const $result = document.querySelector('#result'); // 조회된 데이터를 표시하는 영역
+
+    // [3] 수정 모달창 내부 요소들 가져오기
+    const $updateId = document.querySelector('#update-id'); // 수정 대상 ID
+    const $updateComment = document.querySelector('#update-comment'); // 수정할 코멘트 입력 필드
+    const $updateWriter = document.querySelector('#update-writer'); // 수정할 작성자 입력 필드
+    const $updateDate = document.querySelector('#update-date'); // 수정 대상의 생성 날짜 표시
+
+    // [4] Supabase 연결 정보 (주의: API 키 노출 X!)
+    var dbUrl = 'https://fsvilhpktvuyimkzgflu.supabase.co';
+    var dbPassword = '이곳에 실제 API 키를 입력하지 말고 환경변수를 사용하세요!';
+
+    // [5] Supabase 클라이언트 생성
+    const supabase = window.supabase.createClient(dbUrl, dbPassword);
+
+    // ==========================
+    // 데이터 수정 기능 (모달창 열기)
+    // ==========================
+    function update(id, comment, writer, date) {
+        $modal.classList.remove('hidden'); // 모달창을 화면에 표시
+        $updateId.innerText = `순번 ${id}`;
+        $updateComment.value = comment;
+        $updateWriter.value = writer;
+        $updateDate.innerHTML = `날짜 ${date}`;
+    }
+
+    // 수정 모달창 닫기
+    function updateClose() {
+        $modal.classList.add('hidden'); // 모달창 숨김 처리
+    }
+
+    // ==========================
+    // 데이터 삭제 기능 (Supabase에서 삭제)
+    // ==========================
+    async function deleteData(num) {
+        await supabase.from('test').delete().eq('id', num); // 해당 ID의 데이터 삭제
+        selectData(); // 삭제 후 화면 갱신
+    }
+
+    // ==========================
+    // 데이터 삽입 기능 (Supabase에 데이터 추가)
+    // ==========================
+    async function insertData(comment, writer) {
+        const response = await supabase.from('test').insert([{ comment, writer }]);
+        console.log('데이터 삽입 완료:', response);
+        selectData(); // 데이터 추가 후 목록 갱신
+    }
+
+    // ==========================
+    // 데이터 조회 기능 (Supabase에서 데이터 가져오기)
+    // ==========================
+    async function selectData() {
+        const response = await supabase.from('test').select('*').order('created_at', { ascending: false });
+        let result = '';
+
+        // 받은 데이터를 HTML로 변환하여 화면에 표시
+        for (let i = 0; i < response.data.length; i++) {
+            result += `<div style="margin-top: 1rem;
+                                background-color: rgb(240, 240, 240);
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;padding: 1rem">
+                            <span>순번 ${response.data[i].id}</span>
+                            <span>코멘트 ${response.data[i].comment}</span>
+                            <span>작성자 ${response.data[i].writer}</span>
+                            <span>작성시간 ${new Date(response.data[i].created_at).toLocaleDateString()}</span>
+                            <div>
+                                <button onclick="deleteData(${response.data[i].id})">삭제</button>
+                                <button onclick="update(${response.data[i].id},
+                                                    '${response.data[i].comment}',
+                                                    '${response.data[i].writer}',
+                                                    '${new Date(response.data[i].created_at).toLocaleDateString()}')">수정</button>
+                            </div>
+                        </div>`;
+        }
+        $result.innerHTML = result; // 조회된 데이터를 페이지에 적용
+    }
+
+    // ==========================
+    // '삽입' 버튼 클릭 이벤트 리스너
+    // ==========================
+    $insert.addEventListener('click', function () {
+        if ($comment.value.length < 1) {
+            alert('코멘트를 입력하세요! 😡');
+            $comment.focus();
+            return;
+        } else if ($writer.value.length < 1) {
+            alert('작성자를 입력하세요! 🤬');
+            $writer.focus();
+            return;
+        } else {
+            insertData($comment.value, $writer.value);
+            $comment.value = ''; // 입력란 초기화
+            $writer.value = '';
+        }
+        console.log("데이터 삽입 완료!");
+    });
+
+    // ==========================
+    // '조회' 버튼 클릭 이벤트 리스너
+    // ==========================
+    $select.addEventListener('click', function () {
+        selectData(); // 데이터 조회 함수 실행
+    });
+
+</script>

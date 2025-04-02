@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const x = 10;
+        function outer(){
+            let x = 1;
+            const y = 20;
+            return ()=>{
+                console.log(this);
+                console.log(++x);
+                
+            }
+        }
+        const o1 = new outer();
+        o1();
+        o1();
+        const o2 = outer();
+        o2();
+        o2();
+        const o3 = outer();
+        o3();
+        o3();
+        const o4 = new outer();
+        o4();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

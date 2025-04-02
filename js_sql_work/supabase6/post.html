@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        const supabaseUrl = "https://embqgdrxfblyczbenvie.supabase.co";
+        const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVtYnFnZHJ4ZmJseWN6YmVudmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwMDcsImV4cCI6MjA1NTAwMTAwN30.ZsuAX5G-wfxGLCmNKOniR2t4Ia2ErMj0jjJUlTRjEFo";
+
+        const supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+    </script>
+</head>
+<body>
+<h1 onclick="location.href='./users_orders.html'" style="cursor:pointer;">조회페이지 이동</h1>
+<h1>
+    Post
+</h1>
+<label for="title">title</label>
+<input type="text" name="title" id="title">
+<hr>
+<label for="content">content</label>
+<input type="text" name="title" id="content" style="width:100%;height:200px; resize:none;">
+<input type="file" name="file" id="file">
+<hr>
+<button onclick="post()">POST</button>
+<div id="post-list"></div>
+</body>
+</html>
+<script src="./post2.js"></script>

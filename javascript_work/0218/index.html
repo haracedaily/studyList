@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <label for="task-input">Enter task:</label>
+  <input type="text" id="task-input" placeholder="Type your task and press Enter">
+  <nav>
+    <ul>
+      <li>example<button class="rm-btn">x</button></li>
+    </ul>
+  </nav>
+  <script>
+    // when enter key down at input text, add it as li 
+    const html = document.querySelector('html');
+    const body = document.querySelector('body');
+    const nav = document.querySelector('nav');
+    const ul = document.querySelector('ul');
+    const input = document.querySelector('input');
+
+    const rmBtns = document.querySelectorAll('.rm-btn');
+    for (let rmBtn of rmBtns) {
+      rmBtn.addEventListener('click', () => {
+        ul.removeChild(rmBtn.parentNode);
+      })
+    }
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const li = document.createElement('li');
+        const rmBtn = document.createElement('button');
+        rmBtn.textContent = 'x';
+        li.appendChild(rmBtn);
+        li.textContent = input.value;
+        ul.appendChild(li);
+        input.value = '';
+        // add remove button
+        rmBtn.classList.add('rm-btn');
+        // when click remove button, remove the li
+        rmBtn.addEventListener('click', (e) => {
+          console.log('remove btn clicked');
+          console.dir(e.currentTarget);
+          ul.removeChild(li);
+        });
+        li.appendChild(rmBtn);
+
+        input.focus();
+
+        li.addEventListener('click', () => {
+          console.log('li clicked');
+          console.dir(e.currentTarget);
+        })
+      }
+
+      ul.addEventListener('click', (e) => {
+        console.log('ul clicked');
+        console.dir(e.currentTarget);
+      })
+
+      nav.addEventListener('click', (e) => {
+        console.log('nav clicked');
+        console.dir(e.currentTarget);
+      }) 
+
+      body.addEventListener('click', (e) => {
+        console.log('body clicked');
+        console.dir(e.currentTarget);
+      })
+
+      html.addEventListener('click', (e) => {
+        console.log('html clicked');
+        console.dir(e.currentTarget);
+      })
+    });
+    
+    
+  </script>
+</body>
+</html>

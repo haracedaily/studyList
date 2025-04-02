@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>짐케어 예약하기</title>
+  <style>
+    /* -----------------------------
+       [기본 스타일 초기화]
+    ------------------------------*/
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* -----------------------------
+       [본문 스타일]
+    ------------------------------*/
+    body {
+      font-family: sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    /* -----------------------------
+       [상단 네비게이션 바]
+    ------------------------------*/
+    .navbar {
+      background-color: #FFD400;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+    }
+    .navbar li {
+      margin-left: 1.5rem;
+    }
+    .navbar a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .navbar a:hover {
+      color: #555;
+    }
+
+    /* -----------------------------
+       [타이틀 섹션]
+    ------------------------------*/
+    .title-section {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .title-section h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    .title-section p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    /* -----------------------------
+       [예약 폼 컨테이너]
+    ------------------------------*/
+    .reservation-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group input[type="date"],
+    .form-group select,
+    .form-group textarea,
+    .form-group input[type="number"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-group input[type="checkbox"] {
+      margin-right: 0.5rem;
+      transform: scale(1.1);
+    }
+
+    /* 
+      [짐보관/짐이동 구분 섹션]
+      처음엔 display: none으로 숨겨두고,
+      select 값에 따라 .active를 붙여서 보여줍니다.
+    */
+    .storage-section,
+    .move-section {
+      display: none; 
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      background-color: #fafafa;
+    }
+    .storage-section.active,
+    .move-section.active {
+      display: block;
+    }
+
+    /* 섹션 내부 소제목 및 설명 */
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+    }
+    .section-description {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    /* -----------------------------
+       [개인정보 처리방침 안내문구]
+    ------------------------------*/
+    .privacy-policy {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.4;
+      margin: 0.5rem 0 1.5rem 0;
+    }
+
+    /* -----------------------------
+       [예약하기 버튼]
+    ------------------------------*/
+    .submit-btn {
+      display: block;
+      width: 100%;
+      background-color: #FFD400;
+      color: #333;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      padding: 0.75rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+    .submit-btn:hover {
+      background-color: #FFC107;
+    }
+
+    /* -----------------------------
+       [카카오톡 TALK 버튼]
+       우측 하단 고정
+    ------------------------------*/
+    .kakao-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #FFD400;
+      color: #333;
+      font-weight: bold;
+      padding: 0.75rem 1.25rem;
+      border-radius: 30px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none;
+    }
+    .kakao-btn:hover {
+      background-color: #FFC107;
+    }
+
+    /* 
+      [수량 입력 필드] 
+      폼 그룹 안에서 폭이 너무 넓지 않도록 예시로 width 지정
+    */
+    .quantity-input {
+      width: 100px;
+    }
+
+    /* 라벨과 입력필드를 가로로 배치할 때 간단하게 사용하기 위한 유틸 */
+    .horizontal-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .horizontal-group label {
+      margin-bottom: 0; /* block label로 인한 여백 제거 */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 네비게이션 바 -->
+  <nav class="navbar">
+    <div class="logo">짐케어</div>
+    <ul>
+      <li><a href="#">서비스</a></li>
+      <li><a href="#">바로예약</a></li>
+      <li><a href="#">짐케어</a></li>
+      <li><a href="#">예약확인</a></li>
+      <li><a href="#">고객지원</a></li>
+    </ul>
+  </nav>
+
+  <!-- 타이틀 섹션 -->
+  <div class="title-section">
+    <h1>예약하기</h1>
+    <p>Reservation</p>
+  </div>
+
+  <!-- 예약 폼 컨테이너 -->
+  <div class="reservation-container">
+    <form id="reservationForm">
+      <!-- 이름 입력 -->
+      <div class="form-group">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" placeholder="고객님의 성함을 입력해주세요">
+      </div>
+
+      <!-- 휴대폰 입력 -->
+      <div class="form-group">
+        <label for="phone">휴대폰</label>
+        <input type="tel" id="phone" name="phone" placeholder="예) 010-0000-0000">
+      </div>
+
+      <!-- 이용 서비스 선택 -->
+      <div class="form-group">
+        <label for="serviceType">이용 서비스 선택</label>
+        <select id="serviceType" name="serviceType">
+          <option value="">서비스를 선택하세요</option>
+          <option value="storage">짐 보관(1일기준)</option>
+          <option value="move">짐 이동</option>
+        </select>
+      </div>
+
+      <!-- 공통: 이용 날짜(예시) -->
+      <div class="form-group">
+        <label for="serviceDate">이용 날짜</label>
+        <input type="date" id="serviceDate" name="serviceDate">
+      </div>
+
+      <!-- 짐보관 섹션 -->
+      <div class="storage-section" id="storageSection">
+        <div class="section-title">[짐 보관(1일기준)]</div>
+        <div class="section-description">
+          짐 맡길 시간과 찾을 시간을 설정하고,<br>
+          물품 종류별로 개수를 입력하세요.
+        </div>
+
+        <!-- 짐 맡길 시간 -->
+        <div class="form-group" style="display: flex; gap: 1rem;">
+          <div style="flex:1;">
+            <label for="storageHourStart">짐 맡길 시간 (시)</label>
+            <select id="storageHourStart" name="storageHourStart">
+              <option value="">시</option>
+              <option value="0">0시</option>
+              <option value="1">1시</option>
+              <option value="2">2시</option>
+              <!-- 필요 시 추가 -->
+            </select>
+          </div>
+          <div style="flex:1;">
+            <label for="storageMinuteStart">짐 맡길 시간 (분)</label>
+            <select id="storageMinuteStart" name="storageMinuteStart">
+              <option value="">분</option>
+              <option value="0">00분</option>
+              <option value="30">30분</option>
+              <!-- 필요 시 추가 -->
+            </select>
+          </div>
+        </div>
+
+        <!-- 짐 찾을 시간 -->
+        <div class="form-group" style="display: flex; gap: 1rem;">
+          <div style="flex:1;">
+            <label for="storageHourEnd">짐 찾을 시간 (시)</label>
+            <select id="storageHourEnd" name="storageHourEnd">
+              <option value="">시</option>
+              <option value="0">0시</option>
+              <option value="1">1시</option>
+              <option value="2">2시</option>
+              <!-- 필요 시 추가 -->
+            </select>
+          </div>
+          <div style="flex:1;">
+            <label for="storageMinuteEnd">짐 찾을 시간 (분)</label>
+            <select id="storageMinuteEnd" name="storageMinuteEnd">
+              <option value="">분</option>
+              <option value="0">00분</option>
+              <option value="30">30분</option>
+              <!-- 필요 시 추가 -->
+            </select>
+          </div>
+        </div>
+
+        <!-- 쇼핑백/책팩 수량 -->
+        <div class="form-group horizontal-group">
+          <label>쇼핑백/책팩 (개당 3,000원)</label>
+          <input type="number" name="storageBagCount" value="0" min="0" class="quantity-input">
+        </div>
+
+        <!-- 캐리어 수량 -->
+        <div class="form-group horizontal-group">
+          <label>캐리어 (개당 4,000원)</label>
+          <input type="number" name="storageCarrierCount" value="0" min="0" class="quantity-input">
+        </div>
+
+        <!-- 기타 물품 -->
+        <div class="form-group horizontal-group">
+          <label>기타 물품 (비용별도문의)</label>
+          <input type="text" name="storageEtc" placeholder="예) 유모차 1개 등" style="flex:1; margin-left:1rem;">
+        </div>
+
+        <!-- 안내 문구 -->
+        <p style="margin-top:1rem; color:#666; font-size:0.9rem;">
+          * 보관 이용 요금은 1일기준입니다.
+        </p>
+      </div>
+
+      <!-- 짐이동 섹션 -->
+      <div class="move-section" id="moveSection">
+        <div class="section-title">[짐 이동]</div>
+        <div class="section-description">
+          짐 맡길 시간과 찾을 시간을 설정하고,<br>
+          짐 맡길 곳/찾을 곳을 지정하세요.
+        </div>
+
+        <!-- 짐 맡길 시간 -->
+        <div class="form-group" style="display: flex; gap: 1rem;">
+          <div style="flex:1;">
+            <label for="moveHourStart">짐 맡길 시간 (시)</label>
+            <select id="moveHourStart" name="moveHourStart">
+              <option value="">시</option>
+              <option value="0">0시</option>
+              <option value="1">1시</option>
+              <option value="2">2시</option>
+              <!-- 필요 시 추가 -->
+            </select>
+          </div>
+          <div style="flex:1;">
+            <label for="moveMinuteStart">짐 맡길 시간 (분)</label>
+            <select id="moveMinuteStart" name="moveMinuteStart">
+              <option value="">분</option>
+              <option value="0">00분</option>
+              <option value="30">30분</option>
+              <!-- 필요 시 추가 -->
+            </select>
+          </div>
+        </div>
+
+        <!-- 짐 찾을 시간 -->
+        <div class="form-group" style="display: flex; gap: 1rem;">
+          <div style="flex:1;">
+            <label for="moveHourEnd">짐 찾을 시간 (시)</label>
+            <select id="moveHourEnd" name="moveHourEnd">
+              <option value="">시</option>
+              <option value="0">0시</option>
+              <option value="1">1시</option>
+              <option value="2">2시</option>
+              <!-- 필요 시 추가 -->
+            </select>
+          </div>
+          <div style="flex:1;">
+            <label for="moveMinuteEnd">짐 찾을 시간 (분)</label>
+            <select id="moveMinuteEnd" name="moveMinuteEnd">
+              <option value="">분</option>
+              <option value="0">00분</option>
+              <option value="30">30분</option>
+              <!-- 필요 시 추가 -->
+            </select>
+          </div>
+        </div>
+
+        <!-- 짐 맡길 곳 / 짐 찾을 곳 -->
+        <div class="form-group" style="display: flex; gap: 1rem;">
+          <div style="flex:1;">
+            <label for="movePlaceStart">짐 맡길 곳</label>
+            <select id="movePlaceStart" name="movePlaceStart">
+              <option value="">선택</option>
+              <option value="인천공항">인천공항</option>
+              <option value="김포공항">김포공항</option>
+              <option value="서울역">서울역</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+          <div style="flex:1;">
+            <label for="movePlaceEnd">짐 찾을 곳</label>
+            <select id="movePlaceEnd" name="movePlaceEnd">
+              <option value="">선택</option>
+              <option value="인천공항">인천공항</option>
+              <option value="김포공항">김포공항</option>
+              <option value="서울역">서울역</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 쇼핑백/책팩 -->
+        <div class="form-group horizontal-group">
+          <label>쇼핑백/책팩 (개당 10,000원)</label>
+          <input type="number" name="moveBagCount" value="0" min="0" class="quantity-input">
+        </div>
+        <!-- 캐리어 20~23인치 -->
+        <div class="form-group horizontal-group">
+          <label>캐리어 20~23인치 (개당 12,000원)</label>
+          <input type="number" name="moveCarrierMediumCount" value="0" min="0" class="quantity-input">
+        </div>
+        <!-- 캐리어 24인치 이상 -->
+        <div class="form-group horizontal-group">
+          <label>캐리어 24인치 이상 (개당 18,000원)</label>
+          <input type="number" name="moveCarrierLargeCount" value="0" min="0" class="quantity-input">
+        </div>
+        <!-- 기타 물품 -->
+        <div class="form-group horizontal-group">
+          <label>기타 물품 (비용별도문의)</label>
+          <input type="text" name="moveEtc" placeholder="예) 골프가방 1개 등" style="flex:1; margin-left:1rem;">
+        </div>
+      </div>
+
+      <!-- 문의사항 -->
+      <div class="form-group">
+        <label for="message">문의사항 및 상담 관련 요청사항</label>
+        <textarea id="message" name="message" placeholder="문의사항이나 요청사항을 자유롭게 적어주세요"></textarea>
+      </div>
+
+      <!-- 개인정보 처리방침 동의 -->
+      <div class="form-group">
+        <input type="checkbox" id="privacyAgree" name="privacyAgree">
+        <label for="privacyAgree">개인정보처리방침에 동의합니다</label>
+      </div>
+      <div class="privacy-policy">
+        입력된 정보는 예약 상담 목적으로만 사용되며,<br>
+        관련 법령에 따라 안전하게 보호됩니다.
+      </div>
+
+      <!-- 예약하기 버튼 -->
+      <button type="submit" class="submit-btn">예약하기</button>
+    </form>
+  </div>
+
+  <!-- 카카오톡 TALK 버튼 -->
+  <a href="#" class="kakao-btn">TALK 카카오톡</a>
+
+  <script>
+    /*
+      [서비스 선택 시 DOM 토글]
+      - #serviceType의 값이 'storage'면 .storage-section만 active
+      - 'move'면 .move-section만 active
+      - 그 외는 모두 비활성화
+    */
+    const serviceSelect = document.getElementById('serviceType');
+    const storageSection = document.getElementById('storageSection');
+    const moveSection = document.getElementById('moveSection');
+
+    serviceSelect.addEventListener('change', function() {
+      const selectedValue = this.value;
+
+      // 모든 섹션에서 active 제거
+      storageSection.classList.remove('active');
+      moveSection.classList.remove('active');
+
+      if (selectedValue === 'storage') {
+        storageSection.classList.add('active');
+      } else if (selectedValue === 'move') {
+        moveSection.classList.add('active');
+      }
+      // '서비스를 선택하세요'나 그 외의 값은 아무 섹션도 보여주지 않음
+    });
+
+    /*
+      [간단한 폼 유효성 검사]
+      - 이름/휴대폰 필수 입력
+      - 개인정보 처리방침 체크
+    */
+    document.getElementById('reservationForm').addEventListener('submit', function(event) {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const privacyAgree = document.getElementById('privacyAgree').checked;
+
+      if (!name || !phone) {
+        alert('이름과 휴대폰 번호를 입력해주세요.');
+        event.preventDefault();
+        return;
+      }
+      if (!privacyAgree) {
+        alert('개인정보처리방침에 동의해주세요.');
+        event.preventDefault();
+        return;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+</html>
+<script>
+    let ary = document.querySelectorAll("li");
+    let li = document.querySelector("li");
+    ary.forEach(el=>{
+        el.style.color='rgb(300,0,0)';
+        el.style.fontSize='2rem';
+    })
+    li.style.color='rgb(200,100,100)';
+    li.style.fontSize='3rem';
+    console.log(li);
+    console.log(ary);
+</script>

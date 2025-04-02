@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = "https://embqgdrxfblyczbenvie.supabase.co";
+        const supabasePw = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVtYnFnZHJ4ZmJseWN6YmVudmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwMDcsImV4cCI6MjA1NTAwMTAwN30.ZsuAX5G-wfxGLCmNKOniR2t4Ia2ErMj0jjJUlTRjEFo";
+        const conn = window.supabase.createClient(supabaseUrl, supabasePw);
+    </script>
+    <style>
+        table{
+            width:100%;
+            border-collapse: collapse;
+            text-align:center;
+        }
+        table,th,td{
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+<button onclick="usersSelect()">USERS조회</button>
+<button>ORDERS조회</button>
+<h1>유저</h1>
+<div id="users-div"></div>
+<h1>주문</h1>
+<div id="orders-div"></div>
+<div>
+    이름<input type="text" id="name"><br>
+    이메일<input type="email" id="email">
+    <button>USERS입력</button>
+</div>
+<div>
+    상품명<input type="text" id="product_name"><br>
+    상품가격<input type="number" id="price">
+    <button>ORDERS입력</button>
+</div>
+</body>
+</html>
+<script>
+    const usersDiv = document.querySelector("#users-div");
+
+    async function usersSelect() {
+        const res = await conn.from("users").select();
+        console.log(JSON.stringify(res.data));
+        if (!!res.data) {
+            let resData =`<table>
+<thead>
+<tr>
+<th>아이디</th>
+<th>이름</th>
+<th>메일</th>
+<th>가입일</th>
+<th>활동여부</th>
+</tr>
+</thead>
+<tbody>`;
+            res.data.forEach((user) => {
+                resData += `<tr><td>${user.id}</td>
+<td>${user.name}</td>
+<td>${user.email}</td>
+<td>${user.created_at}</td>
+<td>${user.active?'O':'X'}</td>
+</tr>`;
+            });
+
+            resData +=
+                `</tbody>
+        </table>`;
+            usersDiv.innerHTML=resData;
+        }
+    }
+
+</script>

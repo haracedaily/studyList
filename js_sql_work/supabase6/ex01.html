@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>ex01</h1>
+<button onclick="localSave()">로컬스토리지저장</button>
+<button onclick="localLoad()">로컬스토리지 불러오기</button>
+<button onclick="login()">로그인</button>
+<button onclick="logout()">로그아웃</button>
+<button onclick="newWindow()">새창</button>
+<script>
+    function newWindow() {
+        window.open("http://localhost:63342/supabase6/ex01.html?_ijt=j54raru6ufm358ig22uo6dg29g");
+    }
+    function localSave() {
+        localStorage.setItem("내마음대로","넣기");
+    }
+    function localLoad() {
+        console.log(localStorage.getItem("내마음대로"));
+    }
+    function login() {
+        sessionStorage.setItem('name','value');
+    }
+    function logout(){
+        sessionStorage.removeItem('name');
+    }
+</script>
+</body>
+</html>

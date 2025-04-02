@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .asdf {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(100,200,100);
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="aa">
+  <button id="btn" style="width: 100px;">버튼</button>
+  <div id="print"></div>
+  <script>
+
+    var $aa = document.querySelector('#aa');
+    var $btn = document.querySelector('#btn');
+    var $print = document.querySelector('#print');
+    
+    $btn.addEventListener('mouseover', function() {
+        // $print.style.width = '100px';
+        // $print.style.height = '100px';
+        // $print.style.backgroundColor = 'rgb(100,200,100)';
+        $print.classList.add('asdf');
+    });
+    
+    $print.addEventListener('mouseover', function() {
+        $print.classList.add('asdf');
+    });
+    
+    $print.addEventListener('mouseout', function() {
+        $print.classList.remove('asdf');
+    });
+    
+    $btn.addEventListener('mouseout', function() {
+        $print.classList.remove('asdf');
+    });
+    
+    $btn.addEventListener('click', function() {
+        $print.innerHTML = $aa.value;
+    });
+    
+    </script>
+</body>
+</html>

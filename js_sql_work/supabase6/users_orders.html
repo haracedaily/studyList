@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        const supabaseUrl = "https://embqgdrxfblyczbenvie.supabase.co";
+        const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVtYnFnZHJ4ZmJseWN6YmVudmllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwMDcsImV4cCI6MjA1NTAwMTAwN30.ZsuAX5G-wfxGLCmNKOniR2t4Ia2ErMj0jjJUlTRjEFo";
+
+        const supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+    </script>
+    <style>
+        .content{
+            height:0;
+            overflow:hidden;
+        }
+        .show{
+            height:auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        1. onclick = 
+        2. id 부여한다음에 queryselect -> addEventListener('click', function(){} )
+    -->
+    <h1 onclick="location.href='./post.html'" style="cursor:pointer;">POST작성</h1>
+    <h1 onclick="location.href='./login.html'" style="cursor:pointer;">로그인</h1>
+    <button onclick="usersSelect();">USERS조회</button>
+    <button onclick="orderSelect()">ORDERS조회</button>
+    <button onclick="postSelect()">POST조회</button>
+    <h1 style="cursor:pointer;" onclick="userToggle()">유저</h1>
+    <div id="users-div" class="content"></div>
+    <h1 style="cursor:pointer;" onclick="orderToggle()">주문</h1>
+    <div id="orders-div" class="content"></div>
+    <h1 style="cursor:pointer;" onclick="postToggle()">포스트</h1>
+    <div id="post-div" class="content"></div>
+    <div>
+        이름<input type="text" id="name" /><br />
+        이메일<input type="email" id="email" />
+        <button id="input-button-user">USERS입력</button>
+    </div>
+    <div>
+        상품명<input type="text" id="product_name" /><br />
+        상품가격<input type="text" id="price" />
+        <button id="input-button-order">ORDERS입력</button>
+    </div>
+    <div id="">
+        <label for="">Post</label>
+        <textarea name="" id="post" cols="30" rows="4"></textarea>
+        <button id="input-button-post">POST입력</button>
+    </div>
+
+    <div id="modal" class="hidden" >
+        <div id="modal-div" class="modal-div hidden">
+            <h1>수정</h1>
+            사용자 ID
+            <div id="update-user-id"></div>
+            <div style="display:grid; grid-template-columns: 1fr auto; gap:4px;">
+            이름 <input type="text" id="update-name">
+            이메일 <input type="email" id="update-email">
+            <button onclick="modalToggle()">❌</button>
+            <button id="update-button-user">user수정</button>
+        </div>
+        </div>
+        <div id="modal-div2" class="modal-div2 hidden">
+            <h1>수정</h1>
+            주문 ID
+            <div id="update-order-id"></div>
+            유저 ID
+            <div id="update-order-user-id"></div>
+            <div style="display:grid; grid-template-columns: 1fr auto; gap:4px;">
+            품명 <input type="text" id="update-product-name">
+            가격 <input type="number" id="update-price">
+            <button onclick="modalToggle()">❌</button>
+            <button id="update-button-order">order수정</button>
+        </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<style>
+
+    table {
+        width: 100%;
+    }
+
+    table,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    tr:hover{
+        text-decoration:underline;
+    }
+    #modal{
+        position:fixed; top:0; bottom:0; left:0; right:0; background-color:rgba(230,230,230,0.8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    }
+    .modal-div{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height:400px;
+        width:500px;
+        background-color:white;
+        gap:10px;
+    }
+    .modal-div2{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height:400px;
+        width:500px;
+        background-color:white;
+        gap:10px;
+    }
+    .hidden{
+        display:none !important;
+    }
+</style>
+<script>
+    const $usersDiv = document.querySelector('#users-div');
+    const $usersBtn = document.querySelector("#input-button-user");
+    const $orderDiv = document.querySelector("#orders-div");
+    const $postDiv = document.querySelector("#post-div");
+    const $userName = document.querySelector("#name");
+    const $userBtn = document.querySelector("#input-button-user");
+    const $modal = document.querySelector("#modal");
+    const $modalDiv = document.querySelector("#modal-div");
+    const $modalDiv2 = document.querySelector("#modal-div2");
+
+</script>
+<script>
+    function userToggle(){
+        $usersDiv.classList.toggle('show');
+    }
+    function orderToggle(){
+        $orderDiv.classList.toggle('show');
+    }
+    function postToggle(){
+        $postDiv.classList.toggle("show");
+    }
+    function modalToggle(){
+        $modal.classList.toggle("hidden");
+        }
+</script>
+<script src="orders.js"></script>
+    <script src="users.js"></script>
+    <script src="post.js"></script>
