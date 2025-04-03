@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+  <input type="text" id="comment">
+  <input type="text" id="writer">
+
+  <button id="insert">
+    Insert 
+  </button>
+  <button id="select">
+    Select
+  </button>
+
+  <script>
+    const $insert = document.querySelector('#insert');
+    const $comment = document.querySelector('#comment');
+    const $writer = document.querySelector('#writer');
+    const $select = document.querySelector('#select');
+
+    let dbUrl = 'https://gkvdjgqhijcnhnkkrtwh.supabase.co';
+    let dbPassword = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdrdmRqZ3FoaWpjbmhua2tydHdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwMDUsImV4cCI6MjA1NTAwMTAwNX0.qNfRBhgnysUOs6OLikcSvakeOKkZvMp0PG_lDu8msko';
+
+
+    const supabase = window.supabase.createClient(dbUrl, dbPassword);
+
+    async function insertData() {
+      const response = await supabase.from('test').insert([
+      {comment: 'test' , writer: 'test'}]);
+      console.log(response)
+    }
+    async function selectData() {
+      const response = await supabase.from('test').select('*');
+
+      console.log(response);
+    }
+    
+    $insert.addEventListener('click', ()=>{
+      if ($comment.value.length < 1) {
+        alert('코멘트를 작성하세요');
+        $comment.focus();
+        return;
+      } else if ($witer.value.length < 1) {
+        alert('작성자를 입력하세요');
+        $writer.focus();
+        return;
+      } else {
+        insertData($comment.value, $writer.value);      }
+    });
+
+
+    $select.addEventListener('click', () => {
+      supabase.from('test').select('*').then((response) => {
+        console.log(response);
+      });
+    });
+    
+  </script>
+
+
+</body>
+
+</html>
