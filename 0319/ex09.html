@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="btn">0</button>
+    <script>
+        class App{
+            constructor(){
+                this.$button = document.querySelector(".btn");
+                this.count = 0;
+                this.$button.onclick = this.increase;
+            }
+            //dom function(){} ==> this는 자기자신
+            //()=>{} this는 상위 객체
+            increase = ()=>{
+                console.log(this);
+                console.log(this.$button);
+                this.$button.textContent = ++this.count;}
+        }
+        new App();
+        function bb(){
+            console.log(this);
+        }
+        const aa = () =>{
+            console.log(this);
+        }
+    </script>
+</body>
+</html>
