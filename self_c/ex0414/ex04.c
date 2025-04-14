@@ -29,5 +29,6 @@ int main(){
     free(numPtr2);//반드시 해제해줘야함! 안할 경우 메모리 계속 사용 => 메모리 누수로 이어짐
     printf("numPtr2 주소 : %p\n",numPtr2);
     printf("numPtr2 용량 : %d\n",sizeof *numPtr2);
+    numPtr2=NULL;
     return 0;
 }
