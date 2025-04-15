@@ -10,6 +10,7 @@ int main(){
     
     printf("%s\n",s1);// 선언된 배열은 넘어서도 저장은 되지만 덮어씌웠을 가능성이 있다.
     printf("%s\n",s2);    
-    printf("%d\n",strlen(s2));//문자 길이 출력
+    printf("%d\n",strlen(s2));//hello : 5
+    printf("%d\n",sizeof s2);//배열의 길이 : 10
     return 0;
 }
