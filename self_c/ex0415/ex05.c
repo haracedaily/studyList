@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <string.h>
 
 int main(){
     char s1[10];
@@ -9,5 +10,6 @@ int main(){
     
     printf("%s\n",s1);// 선언된 배열은 넘어서도 저장은 되지만 덮어씌웠을 가능성이 있다.
     printf("%s\n",s2);    
+    printf("%d\n",strlen(s2));//문자 길이 출력
     return 0;
 }
