@@ -30,7 +30,9 @@ int main(){
     printf("이름 : %s\n",p3->name);
     printf("나이 : %d\n",p3->age);
     printf("주소 : %s\n",p3->address);
-    
+    printf("이름 : %s\n",(*p3).name);
+    printf("나이 : %d\n",(*p3).age);
+    printf("주소 : %s\n",(*p3).address);
     free(p3);
     return 0;
 }
