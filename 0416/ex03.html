@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="./test.js"></script>
+    <!-- 
+    defer==DomContentLoaded
+     -->
+</head>
+<body>
+    <ul>
+        <!-- CSSOM DOMTREE가 합쳐져서 렌더트리 -> LAYOUT -> PAINT 생성 -->
+         <!-- CSSOM 진행 -->
+        <li id="apple" style="color:red;">Apple</li>
+        <li id="banana">Banana</li>
+        <li id="orange">Orange</li>
+    </ul>
+    <button onclick="updateList()">생성</button>
+    <button onclick="clearApp()">삭제</button>
+    
+</body>
+</html>
