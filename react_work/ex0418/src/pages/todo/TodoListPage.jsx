@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Table, Tag, message} from "antd";
 import {useNavigate} from "react-router-dom";
+import {todoReq} from "../../database/mockApi.js";
 
 function TodoListPage(props) {
     const [todos, setTodos] = React.useState([]);
@@ -40,12 +41,19 @@ function TodoListPage(props) {
         console.timeEnd('checkRow');
     }
     const handleDelete = () => {
-if(selectedRowkeys?.length !== 1){
-    message.warning("하나만 선택")
-
-}else{
-    message.info("삭제 할때")
-}
+    //[41,42]
+        let result = [];
+        selectedRowkeys.forEach(id=>{
+            console.log(id);
+        todoReq.delete(id).then(res=> {
+            result.push(res);
+            console.log(result);
+            if(result.includes('200')){
+                message.success('삭제되었습니다.');
+                loadData();
+            }
+        });
+    })
     }
     return (
         <>
