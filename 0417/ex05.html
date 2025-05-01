@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="fr">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>melon</li>
+    </ul>
+    <script>
+        let $fr = document.getElementById('fr');
+        console.log($fr.children); // HTMLCollection(3) [li, li, li]
+        let [_1, _2, ] = $fr.children;
+        let copyApple = _1.cloneNode();
+        copyApple.appendChild(document.createTextNode('🍏'));
+
+        $fr.appendChild(_1);
+        $fr.insertBefore(_2, _1);
+        $fr.insertBefore(_2, $fr.lastChild);
+        $fr.insertBefore(_2, $fr.firstElementChild);
+        $fr.insertBefore(_2, $fr.lastElementChild);
+        $fr.appendChild(copyApple);
+        $fr.removeChild(_1);
+        let childrens = $fr.children;
+        console.log(childrens);
+        childrens=[...childrens].reverse();
+        childrens.map(el=>$fr.appendChild(el));
+    </script>
+</body>
+</html>

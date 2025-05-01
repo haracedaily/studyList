@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://www.naver.com">네이버</a>
+    <input type="checkbox" id="checkbox" checked>체크박스<br>
+    <script>
+        document.querySelector('a').onclick = function(event) {
+            event.preventDefault(); // 기본 동작을 막는다. (링크 이동을 막는다.)
+setTimeout(() => {
+    window.open('https://www.naver.com', '_blank'); // 새 창으로 열기
+}, 1000);
+        };
+
+        document.querySelector('input[type="checkbox"]').onclick = function(event) {
+           event.preventDefault(); // 기본 동작을 막는다. (체크박스 체크 해제)
+            console.log('체크박스 클릭됨');
+            setTimeout(() => {
+                event.target.checked = !event.target.checked; // 체크박스 체크 해제
+            }, 1000);
+        };
+    </script>
+</body>
+</html>

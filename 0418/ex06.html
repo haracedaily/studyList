@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="id" value="안녕하세요">
+    <ul id="fr">
+        <li id="1" data-user-id="1" data-role="apple">Apple</li>
+        <li id="2" data-user-id="2" data-role="banana">Banana</li>
+        <li id="3" data-user-id="3" data-role="orange">Orange</li>
+    </ul>
+    <script>
+        const $frs = [...document.getElementById('fr').children];
+        // console.log($frs); // HTMLCollection(3) [li#1, li#2, li#3]
+        const res = $frs.find(el=>{
+            console.log(el);
+            console.log(el.dataset.userId); // 1, 2, 3
+            return el.dataset.userId==2}); // li#2
+        console.log(res); // li#2
+        console.log(res.dataset); // 2
+        console.log(res.dataset.role='변경변경'); // banana
+        console.log(res.dataset); // {userId: "2", role: "변경변경"}
+        //find는 배열에서 구성요소를 반환하는 함수
+        //findIndex는 구성 요소의 인덱스를 반환
+        
+
+    //    let $1=document.getElementById('1');
+    //      let $2=document.getElementById('2');
+    //         let $3=document.getElementById('3');
+    //         console.log($1.dataset.userId);
+    //         console.log($1.dataset.role);
+    //         console.log($1.attributes); 
+    //         console.log($2.dataset.userId);
+    //         console.log($2.dataset.role);
+    //         console.log($3.dataset.userId);
+    //         console.log($3.dataset.role);
+    </script>
+</body>
+</html>

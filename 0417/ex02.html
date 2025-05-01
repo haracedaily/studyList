@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- beforebegin -->
+    <ul id="fr">
+        <!-- afterbegin -->
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>melon</li>
+        <!-- beforeend -->
+    </ul>
+    <!-- afterend -->
+    <script>
+        let $fr = document.getElementById('fr');
+        $fr.insertAdjacentHTML('beforebegin', '<div/>');
+        $fr.insertAdjacentHTML('afterbegin', '<button onclick="del()">삭제</button>');
+        $fr.insertAdjacentHTML('afterbegin', '<button onclick="add()">추가</button>');
+        $fr.insertAdjacentHTML('afterend', '<div>d</div>');
+
+        function add(){
+            console.time('add');
+            $fr.insertAdjacentHTML('beforeend', '<li>🍇</li>');
+            console.timeEnd('add');
+        }
+        function del(){
+            // $fr.removeChild($fr.lastElementChild);
+            $fr.lastElementChild.remove();
+        }
+    </script>
+</body>
+</html>

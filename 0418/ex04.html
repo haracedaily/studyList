@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="id" value="안녕하세요">
+    <button onclick="func()">속성프로퍼티 확인</button>
+    <ul id="fr">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>melon</li>
+    </ul>
+    <script>
+        const $id = document.getElementById('id');
+        $id.oninput = function(e) {
+            console.log(e.target.value); // 안녕하세요
+            console.log(this);//자기 자신 인 input을 가리킴
+        };
+        
+        // 화살표 함수는 this가 상위 스코프를 가리킴
+        // overwrite oninput
+        $id.oninput = (e)=> {
+            console.log(e); // 안녕하세요
+            console.log(this);//상위요소인 window를 가리킴
+        };
+        function func(){
+            const $id = document.getElementById('id');
+            console.log($id.attributes); // HTMLCollection(2) [id: id, value: 안녕하세요]
+            console.log($id.attributes.id.value); // id
+            console.log($id.attributes.value.value); // 안녕하세요
+            console.log($id.attributes.type.value); // null
+            console.log($id.defaultValue); // 안녕하세요
+            console.log($id.value); // 안녕하세요
+        }
+    </script>
+</body>
+</html>

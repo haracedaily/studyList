@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>버튼</button>
+    <input type="text">
+    <script>
+        const $button = document.getElementsByTagName('button')[0];
+
+        const $input = document.getElementsByTagName('input')[0];
+
+        $input.onchange = input이벤트;
+        $button.onclick = button이벤트;
+
+        function input이벤트(e) {
+            console.log(e); //input의 이벤트 객체를 가져옴
+            console.log(e.currentTarget); //input의 이벤트 객체를 가져옴
+            console.log(e.target); //input의 이벤트 객체를 가져옴
+        }
+
+        function button이벤트(e) {
+            console.log(e); //button의 이벤트 객체를 가져옴
+            console.log(e.currentTarget); //button의 이벤트 객체를 가져옴
+            console.log(e.target); //button의 이벤트 객체를 가져옴
+        }
+    </script>
+</body>
+</html>

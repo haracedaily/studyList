@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="pp"></div>
+</body>
+<script>
+    let todos="asdas";
+    const $pp = document.getElementById("pp");
+    const get = (url,sucfunc,failfunc) =>{
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET",url);
+    xhr.send();
+    xhr.onload = () => {
+        if(xhr.status == 200){
+            todos="비동기 통신 성공";
+            let result = xhr.response.replaceAll(",",",<br/>");
+            sucfunc(result);
+            let data = JSON.parse(xhr.response);
+            data.forEach(element => {
+                let subDiv = document.createElement("div");
+                /* response 에 있는 json 문자열을 object 객체로 바꿔라
+                textcontent 속성은 html이 그냥 문자열 그대로 출력
+                innerHTML은 html 태그 정상 동작 */
+                subDiv.innerHTML=JSON.stringify(element).replaceAll(',',',<br>');
+                $pp.append(subDiv);
+            });
+        }else{
+            failfunc(xhr.statusText);
+        }
+    }
+}
+
+get("https://6809e0571f1a52874cde2b14.mockapi.io/todos",console.log,console.error);
+console.log("todos : "+todos);
+</script>
+</html>
+

@@ -1,0 +1,11 @@
+.header{
+  display:flex;
+  gap : 1rem;
+}
+
+a{
+  text-decoration: none;
+}
+a:hover{
+
+}

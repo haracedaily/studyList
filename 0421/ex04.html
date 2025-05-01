@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>바나나</li>
+        <li>사과</li>
+        <li>수박</li>
+    </ul>
+    <button id="btn1" onclick="sayHi(event)">btn1</button>
+    <button id="btn2">btn2</button>
+    <button id="btn3">btn3</button>
+    <script>
+        const $ul = document.getElementsByTagName('ul')[0];
+        //임의 설정 없을 경우 확인 불가
+        console.log($ul.style.width);
+        console.log($ul.style.color);
+        //window.getComputedStyle을 사용하여 확인 가능
+        //getComputedStyle은 CSS 속성을 읽어오는 메서드
+        //getComputedStyle은 window 객체의 메서드이므로 window. 생략 가능
+        //getComputedStyle은 인자로 DOM 객체를 받음
+        console.log(window.getComputedStyle($ul).width);//paint하고나서 확인 가능
+        console.log(window.getComputedStyle($ul).color);
+        window.addEventListener('resize', () => {
+            console.log(window.getComputedStyle($ul).width);//paint하고나서 확인 가능
+            console.log(window.getComputedStyle($ul).color);
+        });
+        //옛날 방식인 onclick에서만 event 예약어 사용 가능
+        function sayHi(e) {
+            console.log(e); //이벤트 객체   
+            console.log(event); //이벤트가 발생한 요소
+            console.log(event.target); //이벤트가 발생한 요소
+            console.log('hi');
+        }
+        const $btn1 = document.getElementById('btn1');
+        $btn1.onclick = () => {
+            console.log(event); //이벤트 객체
+            console.log(event.target); //이벤트가 발생한 요소
+            console.log('btn1 clicked');
+            //onclick은 중복 불가능
+            //onclick = () => {}로 덮어씌워짐
+        };
+        $btn1.addEventListener('click', () => {
+            console.log(event); //이벤트 객체
+            console.log(event.target); //이벤트가 발생한 요소
+            console.log('btn1 clicked again');
+            //addEventListener는 중복 가능
+            //removeEventListener로 제거 가능
+            //removeEventListener는 addEventListener와 동일한 인자를 받아야함
+        });
+        const handlingClick = () => {
+            console.log(event); //이벤트 객체
+            console.log(event.target); //이벤트가 발생한 요소
+            console.log('btn1 clicked again2');
+            //addEventListener는 중복 가능
+            //removeEventListener로 제거 가능
+            //removeEventListener는 addEventListener와 동일한 인자를 받아야함
+        };
+        $btn1.addEventListener('click', handlingClick);
+        $btn1.removeEventListener('click', handlingClick);
+        const $btn2 = document.getElementById('btn2');
+        $btn2.onclick = () => {
+            console.log(event);
+            console.log(event.target); //이벤트가 발생한 요소
+            console.log('btn2 clicked');
+            //중복 선언시 overwirte됨
+            //onclick = () => {}로 덮어씌워짐
+        };
+        const $btn3 = document.querySelector('#btn3');
+        $btn3.addEventListener('click', () => {
+            console.log(event);
+            console.log(event.target); //이벤트가 발생한 요소
+            console.log('btn3 clicked');
+        });
+        $btn3.addEventListener('click', () => {
+            console.log(event);
+            console.log(event.target); //이벤트가 발생한 요소
+            console.log('중복 이벤트 발생 가능');
+            //addEventListener는 중복 가능
+            //removeEventListener로 제거 가능
+            //removeEventListener는 addEventListener와 동일한 인자를 받아야함
+            //onclick과 addEventListener는 다름 같이 사용 시 별도로 중첩됨
+        });
+        
+    </script>
+</body>
+</html>

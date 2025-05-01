@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width:100px;
+            height:100px;
+            background-color: antiquewhite;
+        }
+        .red{
+            color:red;
+        }
+        .blue{
+            color:blue
+        }
+    </style>
+</head>
+<body>
+    <div class="box red">Hello World</div>
+    <script>
+    const $box = document.querySelector('.box');        
+    $box.classList.add('blue'); // classList.add() : 클래스 추가
+    console.log($box.classList); // classList : 클래스 목록 확인
+    console.log($box.classList.contains('red')); // classList.contains() : 클래스 포함 여부 확인
+    console.log($box.className); // className : 클래스 이름 확인
+    $box.classList.remove('blue'); // classList.remove() : 클래스 제거
+    $box.className =$box.className.replace('red','blue'); // className.replace() : 클래스 이름 변경
+    </script>
+</body>
+</html>

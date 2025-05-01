@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- axios라이브러리 cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js" integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<button type="button" id="GET">GET</button>
+<input type="text" id="todo">
+<button type="button" id="POST">POST</button>
+<br/>
+<button type="button" id="PUT">PUT</button>
+<button type="button" id="PATCH">PATCH</button>
+<button type="button" id="DELETE">DELETE</button>
+<h1>Todos</h1>
+<div id="result"></div>
+<script>
+    let getBtn=document.querySelector("#GET");
+    let patchBtn = document.querySelector("#PATCH");
+    let postBtn = document.getElementById("POST");
+    let putBtn = document.getElementById("PUT");
+    let deleteBtn = document.getElementById("DELETE");
+    let resultContent = document.querySelector("#result");
+    patchBtn.addEventListener("click",function(e){
+        e.preventDefault();
+        fetch("http://localhost:5000/users/1",{
+            method:"PATCH",
+            body:JSON.stringify({name:"fetch수정"}),
+            headers:{'Content-Type': 'application/json'}
+        })
+        .then(res => res.json())
+    .then(data => {
+        console.log("패치 성공:", data);
+    })
+    .catch(err => {
+        console.error("에러 발생:", err);
+    });
+
+    });
+    getBtn.addEventListener('click',function(){
+        axios.get("http://localhost:5000/todos")
+        .then(data => {
+            console.log(data);
+            if(resultContent.children.length>0)
+            resultContent.innerHTML='';
+            data.data.forEach(item => {
+                const $subDiv = document.createElement('div');
+                const $checkbox= document.createElement('input');
+                $checkbox.type = 'checkbox';
+                $checkbox.value = item.id;
+                const $h1 = document.createElement('h1');
+                $h1.textContent=item.todo;
+                $subDiv.appendChild($checkbox);
+                $subDiv.appendChild($h1);
+                resultContent.appendChild($subDiv);
+            });
+        })
+    });
+    postBtn.addEventListener('click',function(){
+        let todo = document.getElementById('todo').value;
+        axios.post("http://localhost:5000/todos",{todo,completed:false})
+        .then(data=>{
+            console.log(data);
+        })
+    });
+    deleteBtn.addEventListener('click',function(){
+        
+        axios.delete('http://localhost:5000/todos/025b');
+    })
+</script>
+</body>
+</html>

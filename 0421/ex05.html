@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>추가삭제</button>
+    <script>
+        function func(){
+            console.log('함수');
+            //한번 실행하고나서 이벤트 제거
+            $button.removeEventListener('click', func, false);//성공
+            $button.removeEventListener('click', func, true);//실패
+            $button.removeEventListener('click', ()=>{
+                console.log('함수2');
+            },false);//실패
+            
+            //removeEventListener는 default로 false임
+            //만약 true로 설정하면 removeEventListener가 실패함
+            
+        }
+        const $button = document.querySelector('button');
+        $button.addEventListener('click', func);
+    </script>
+</body>
+</html>

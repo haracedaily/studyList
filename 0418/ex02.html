@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inputId" value="열심히합니다" placeholder="Enter a number">
+    <ul id="fr">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>melon</li>
+    </ul>
+    <button onclick="chk()">btn</button>
+    <script>
+        let {attributes,defaultValue,value}=document.getElementById('inputId');
+        console.log(attributes);
+        console.log(attributes.id.value);
+        console.log(attributes.value.value);
+        console.log(attributes.placeholder.value);
+        console.log(attributes.type.value);
+        console.log(defaultValue);
+        document.getElementById('inputId').setAttribute('value','휴식');
+        console.log(document.getElementById('inputId').getAttribute('value'));
+
+        function chk() {
+        let {attributes,defaultValue,value}=document.getElementById('inputId');
+        console.log(attributes);
+        console.log(attributes.id.value);
+        console.log(attributes.value.value);
+        console.log(attributes.placeholder.value);
+        console.log(attributes.type.value);
+        console.log(defaultValue);
+        console.log(value);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let result = "result";
+        const getPromise = (url) =>{
+            return new Promise((resolve,reject)=>{
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET",url);
+                xhr.send();
+
+                xhr.onload=()=>{
+                    result = xhr.response;
+                    if(xhr.status===200)resolve(xhr.response);
+                    else reject("통신실패"+xhr.status);
+                }
+            })
+        }
+        getPromise("https://6809e0571f1a52874cde2b14.mockapi.io/todos")
+        .then(res=>console.log(res)).catch(e=>console.error(e));
+
+
+        /* pending 대기
+        settled => 진행결과 나온 상태 자체를 지칭
+        fulfilled 성공
+        rejected 실패
+
+        mockApi, jsonplaceholder
+         */
+    </script>
+</body>
+</html>

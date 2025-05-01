@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="fragAdd()">가상추가</button>
+    <button onclick="repeatAdd()">반복추가</button>
+    <ul id="fr">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>melon</li>
+    </ul>
+    <script>
+        $fr = document.getElementById('fr');
+
+        let frag = document.createDocumentFragment();
+        
+        function fragAdd(){
+            console.time('fragAdd');
+            ['🍇', '🍉', '🍊'].forEach(el=>{
+                let li = document.createElement('li');
+            
+                li.appendChild(document.createTextNode(el));
+                frag.appendChild(li);
+            });
+            $fr.appendChild(frag);
+            console.timeEnd('fragAdd');
+            
+        }
+        function repeatAdd(){
+            console.time('repeatAdd');
+            const $div = document.createElement('div');
+            ['🍇', '🍉', '🍊'].forEach(el=>{
+                let li = document.createElement('li');
+                li.appendChild(document.createTextNode(el));
+                let li2 = document.createElement('li');
+                li2.appendChild(document.createTextNode(el));
+                $div.append(li2);
+                $fr.appendChild(li);
+            });
+            $fr.appendChild($div);
+            console.timeEnd('repeatAdd');
+        }
+    </script>
+</body>
+</html>

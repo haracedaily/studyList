@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="fr">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>melon</li>
+    </ul>
+    <button onclick="add()">추가</button>
+    <button onclick="del()">삭제</button>
+    <script>
+        let $fr = document.getElementById('fr');
+
+        function add(){
+            console.time('add');
+            let $li = document.createElement('li');
+            let $text = document.createTextNode('🍇');
+            $li.appendChild($text);
+            $fr.appendChild($li);
+            console.timeEnd('add');
+        }
+
+        function del(){
+            if($fr.childElementCount==0){
+                return;
+            }
+            $fr.removeChild($fr.lastElementChild);
+            if($fr.children.length==0){
+                [...$fr.childNodes].map(el=>el.remove());
+            }
+            console.log($fr.childNodes);
+        }
+    </script>
+</body>
+</html>

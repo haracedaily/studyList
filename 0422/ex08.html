@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<button id="btn1">0</button>
+<button id="btn2">0</button>
+<span id="msg"></span>
+<script>
+    const num = 10;
+    const $btn1 = document.getElementById('btn1');
+    const $btn2 = document.querySelector('#btn2');
+    const $msg = document.querySelector('#msg');
+    const add = num => e => $msg.textContent = `num = ${num} e= ${e.target}`;
+    
+    $btn1.onclick = add(num);
+    /* const add = (num,e) => {
+        $msg.textContent = `num = ${num} e= ${e.target}`;
+    };
+    $btn1.onclick = (e) => {
+        add(num,e);
+    }; */
+    $btn1.onclick = (e) =>{
+        let num = 10;
+     (function(e) {
+        num += 10;
+        this.textContent = num;
+    })();
+    };
+        /* 
+    $btn1.onclick = function(event) {
+        console.log(event.target); // 이벤트가 발생한 요소
+        console.log(event.currentTarget); // 이벤트 리스너가 바인딩된 요소
+        console.log(this); // 이벤트 리스너가 바인딩된 요소
+        this.textContent = +this.textContent + 10;
+    }; */
+    //arrow function 사용시 this는 window 객체를 가리킨다.
+    $btn2.addEventListener('click', function(event) {
+        console.log(event.target); // 이벤트가 발생한 요소
+        console.log(event.currentTarget); // 이벤트 리스너가 바인딩된 요소
+        console.log(this); // window 객체
+        --this.textContent;
+    });
+
+
+    /* new CustomEvent() */
+</script>
+</body>
+</html>

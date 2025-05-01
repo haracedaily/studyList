@@ -1,0 +1,15 @@
+#폴더 디렉토리 만들기
+
+#라이브러리 json server설치
+npm i json-server
+
+
+# 서버 실행 명령어
+json-server --watch db.json --port 5000 ([옵션:사용포트번호])
+npx json-server --watch db.json --port 5000
+
+#post맨 사용 이유
+REST api 통신방식 다 사용 가능
+
+일반적으로 REST api라기보다 통신방법적으로 GET과 POST방식 사용
+=>브라우저 호출은 GET방식만 가능

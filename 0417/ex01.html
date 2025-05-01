@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <ul id="fr">
+            <li>Apple</li>
+            <li>Banana</li>
+            <li>melon</li>
+        </ul>
+        <button onclick="addLi()">li추가</button>
+        <button onclick="delLi()">li삭제</button>
+    </div>
+    <script>
+        const $ul = document.querySelector('#fr');
+        const htmlCollection = document.getElementsByTagName('li');
+
+        const nodeList = document.querySelectorAll('li');
+        function addLi(){
+            console.time('add');
+            const li = document.createElement('li');
+            li.innerHTML = '🍇';
+            $ul.appendChild(li);
+            console.timeEnd('add');
+        }
+        // const array = Array.from(htmlCollection);
+
+        function delLi(){
+            let lastChildType = $ul.lastChild;
+            if($ul.childElementCount==0){
+                [...$ul.childNodes].map(el=>el.remove());
+                return;
+            }
+            while(lastChildType.nodeType==3){
+                lastChildType = lastChildType.previousSibling;
+            }
+            lastChildType.remove();
+        }
+    </script>
+</body>
+</html>
