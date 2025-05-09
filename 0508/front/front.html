@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js" integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <button id="get">get요청</button>
+    <button id="post">post요청</button>
+    <ul>
+        <li data-user-name="김길동" data-user-age="20">김길동</li>
+        <li data-user-name="홍길동" data-user-age="30">홍길동</li>
+        <li data-user-name="이길동" data-user-age="40">이길동</li>
+    </ul>
+</body>
+<script>
+    console.time('foreach');
+    [...document.querySelector('ul').children].forEach(el=>{
+        console.log('item',el.dataset);
+        console.log('item',el.dataset.userName);
+        console.log('item',el.dataset.userAge);
+    })
+    console.timeEnd('foreach');
+    console.time('children');
+    const li1 = document.querySelector('ul').children[0];
+    const li2 = document.querySelector('ul').children[1];
+    const li3 = document.querySelector('ul').children[2];
+    console.log('li1',li1.dataset);
+    console.log('li1',li1.dataset.userName);
+    console.log('li1',li1.dataset.userAge);
+    console.log('li2',li2.dataset);
+    console.log('li2',li2.dataset.userName);
+    console.log('li2',li2.dataset.userAge);
+    console.log('li3',li3.dataset);
+    console.log('li3',li3.dataset.userName);
+    console.log('li3',li3.dataset.userAge);
+    console.timeEnd('children');
+    document.getElementById('get').addEventListener('click',()=>{
+        axios.get("http://192.168.0.22:8005").then(res=>{
+            console.log(res);
+        })
+    })
+    document.getElementById('post').addEventListener('click',()=>{
+        axios.post("http://192.168.0.22:8005",{name:"홍길동",age:30}).then(res=>{
+            console.log(res);
+        })
+    })
+</script>
+</html>
