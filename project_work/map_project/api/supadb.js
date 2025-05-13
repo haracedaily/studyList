@@ -23,3 +23,12 @@ export async function fetchApi(lat,lng){
         throw new Error('fetchApi failed');
     }
 }
+
+export const fetchReviews = async (id)=>{
+    try{
+    const {data} = await supabase.from('reviews').select('*').eq("city_id",id);
+    return data;
+    }catch(e){
+        return [];
+    }
+}

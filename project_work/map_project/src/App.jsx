@@ -157,10 +157,10 @@ const showDrawer = () =>{
         {/*{ AirTable(aqiInfo)}*/}
         <AirTable {...aqiInfo} />
         {/*<Line {...config} />*/}
-        <Line data={config.data} xField={config.xField} yField={config.yField} />
-        <Bar data={config.data} xField={config.xField} yField={config.yField} />
-        <Pie data={config.data} xField={config.xField} yField={config.yField} />
-        <DemoDefaultTooltip/>
+        {/*<Line data={config.data} xField={config.xField} yField={config.yField} />*/}
+        {/*<Bar data={config.data} xField={config.xField} yField={config.yField} />*/}
+        {/*<Pie data={config.data} xField={config.xField} yField={config.yField} />*/}
+        {/*<DemoDefaultTooltip/>*/}
     </>
   )
 }
