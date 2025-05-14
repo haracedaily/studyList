@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {fetchReviews} from "../../api/supadb.js";
+import {fetchReviews, postReview} from "../../api/supadb.js";
 import {UserOutlined} from "@ant-design/icons";
-import {Button, Card, Form, Input, Rate} from "antd";
+import {Button, Card, Form, Input, message, Rate, Typography} from "antd";
 
-function Reviews({city:propsCity}) {
+function Reviews({city:propsCity,aqi}) {
     const [form] = Form.useForm();
     // const [city, setCity] = useState(propsCity);
     const [reviews, setReviews] = useState([]);
@@ -11,14 +11,19 @@ function Reviews({city:propsCity}) {
         // setCity(propsCity);
         if(!propsCity)return;
         fetchReviews(propsCity.id).then(data=>{
-            console.log("reviews",data);
             setReviews(data);
         }).catch(e=>{console.log("error",e);});
     }, [propsCity]);
-    console.log(propsCity);
-    // console.log(city);
-    const handleSubmit = (e) =>{
-        console.log('submit');
+    const handleSubmit = async (values) =>{
+        console.log(propsCity);
+        values.city_id=propsCity.id;
+        values.air_quality_index = aqi;
+        let res = await postReview(values);
+        if(res==='success'){
+            message.success('Review created successfully');
+        }else{
+            message.error('Review created error');
+        }
     }
 
     if(propsCity ===null) {
@@ -37,8 +42,12 @@ function Reviews({city:propsCity}) {
                     )
                 )}
                 <Card>
+                    <Typography.Title level={3}>리뷰작성</Typography.Title>
                     <Form form={form} onFinish={handleSubmit} layout="vertical">
-                        <Form.Item label="이름" name={"userName"} rules={[{required:true,message:"이름을 입력해주세요"}]}>
+                        <Form.Item
+                            label="이름"
+                            name={"user_name"}
+                            rules={[{required:true,message:"이름을 입력해주세요"}]}>
                             <Input prefix={<UserOutlined/> }
                                 placeholder={"이름을 입력해주세요."}></Input>
                         </Form.Item>

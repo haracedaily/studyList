@@ -10,14 +10,7 @@ function AirTable(props) {
     },[props]);
     try{
         const {aqi,city:{geo},iaqi:{co,no2,o3,pm10,pm25,so2}} = props;
-        console.log(aqi);
-        console.log(geo);
-        console.log("일산화탄소:", co.v);
-        console.log("이산화질소:", no2.v);
-        console.log("오존",o3.v);
-        console.log("미세먼지:", pm10.v);
-        console.log("초미세먼지:", pm25.v);
-        console.log("아황산가스:", so2.v);
+        console.log(props);
     }catch(e){
         console.log(e);
     }

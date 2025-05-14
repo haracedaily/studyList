@@ -5,6 +5,7 @@ import App from './App.jsx'
 
 import { unstableSetRender } from 'antd';
 import { createRoot } from 'react-dom/client';
+import {BrowserRouter} from "react-router-dom";
 
 unstableSetRender((node, container) => {
     container._reactRoot ||= createRoot(container);
@@ -18,6 +19,8 @@ unstableSetRender((node, container) => {
 
 createRoot(document.getElementById('root')).render(
     // <StrictMode>
+    <BrowserRouter>
     <App />
+    </BrowserRouter>
     // </StrictMode>,
 )

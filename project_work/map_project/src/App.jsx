@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -11,51 +11,13 @@ import { Column } from '@ant-design/plots';
 import ReactDOM from 'react-dom';
 import MyChart from "./components/MyChart.jsx";
 import Reviews from "./components/Reviews.jsx";
+import {Link, Route, Routes, useNavigate} from "react-router-dom";
+import RootPage from "./pages/RootPage.jsx";
+import UserPage from "./pages/UserPage.jsx";
+import Menu from "./components/Menu.jsx";
 
 function App() {
-    const [cities,setCities] = useState([]);
-    const [aqiInfo,setAqiInfo]=useState({});
-    const [city,setCity] = useState(null);
-    const [open, setOpen] = useState(false);
-    const [placement,setPlacement] = useState("left");
-    useEffect(() => {
-        fetchCities().then(res => {
-            console.log(res);
-            setCities(res);
-        });
-    }, []);
-    useKakaoLoader({
-        appkey: import.meta.env.VITE_KAKAO_API_KEY,
-        libraries: ["clusterer", "drawing", "services"],
-    });
-  const getApi = async(city)=>{
-      console.log(city);
-      fetchApi(city.latitude,city.longitude).then(res=>{
-          console.log(res);
-          setAqiInfo(res);
 
-      })
-     /* try {
-          const url = `https://api.waqi.info/feed/geo:${city.latitude};${city.longitude}/?token=${WAQI_API_KEY}`;
-          const response = await fetch(url);
-          const data = await response.json();
-
-          if (data.status === "ok") {
-              setAqiInfo({
-                  cityName: city.name,
-                  aqi: data.data.aqi,
-                  pm10: data.data.iaqi.pm10?.v || "N/A",
-                  pm25: data.data.iaqi.pm25?.v || "N/A",
-                  no2: data.data.iaqi.no2?.v || "N/A",
-                  so2: data.data.iaqi.so2?.v || "N/A",
-                  co: data.data.iaqi.co?.v || "N/A",
-                  o3: data.data.iaqi.o3?.v || "N/A",
-              });
-          }
-      } catch (error) {
-          console.error("API 호출 오류:", error);
-      }*/
-  }
 
   const config = {
       data : [
@@ -117,45 +79,18 @@ function App() {
         return <Column {...config} />;
     };
 
-const onClose=()=>{
-    setOpen(false);
-}
-const showDrawer = () =>{
-    setOpen(true);
-}
   return (
     <>
         {/*<h1>미세먼지</h1>*/}
-        <Button style={{position:'absolute', top:'1rem',left:'1rem',zIndex:'999'}} onClick={showDrawer}>Open</Button>
-        <Drawer
-            title={"Basice Drawer"}
-            placement={placement}
-            closable={false}
-            onClose={onClose}
-            open={open}
-            key={placement}
-            >
-            <p>some contents...</p>
-            <p>some contents...</p>
-            <p>some contents...</p>
-        </Drawer>
+        <Menu />
         {/*<MyChart data={myChartVal}></MyChart>*/}
-      <Map center={{lat: 35.8296, lng:128.5328}} level={8}
-      style={{width:'100%',height:'50vh'}}>
 
-          {cities.map((city)=>{
-          return <MapMarker key={city.id} position={{lat:city.latitude,lng:city.longitude}}
-                     onClick={()=> {
-                         getApi(city);
-                         setCity(city);
-                     }}>
-          </MapMarker>
-          })}
 
-      </Map>
-        <Reviews city={city}/>
-        {/*{ AirTable(aqiInfo)}*/}
-        <AirTable {...aqiInfo} />
+        <Routes>
+            <Route path='/' element={<RootPage/> }></Route>
+            <Route path='/user' element={<UserPage/> }></Route>
+        </Routes>
+
         {/*<Line {...config} />*/}
         {/*<Line data={config.data} xField={config.xField} yField={config.yField} />*/}
         {/*<Bar data={config.data} xField={config.xField} yField={config.yField} />*/}
