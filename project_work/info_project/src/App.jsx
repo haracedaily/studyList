@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Person from "./components/Person.jsx";
 
 function App() {
 const [person, setPerson] = useState();
@@ -17,6 +18,12 @@ const mouseOut= () => {
 }
   return (
     <>
+        {test &&
+        <>
+            <Person name={"홍길동"} age={30} position={"right"}/>
+            <Person name={"홍길동"} age={30} position={"bottom"}/>
+        </>
+        }
         <div style={{position:"absolute",zIndex:100,backgroundColor:"#fff"}}>
         {test && print }
         </div>
