@@ -13,6 +13,8 @@ try{
 }else if(req.url==='/join' && req.method==="POST"){
     req.setEncoding('utf-8');
     let body = '';
+
+    //이벤트는 비동기 실행
         req.on('data', (data)=>{
             body += data;
 
@@ -37,11 +39,12 @@ try{
                 return res.end(JSON.stringify(obj));
             }
         })
-        //req와 무관하게 작동함
+        //req 이벤트와 무관하게 우선 작동함
     // console.log(body);
     // const obj = {name:"홍길동",age:20};
     // res.writeHead(200,{'Content-Type':'application/json; charset=utf-8'});
     // res.end(JSON.stringify(obj));
+        //일단 리턴 시키고 이벤트에서 실행 될때 값에 따라 결과 전송
         return
 }
     else if(req.url.includes('/select')){
@@ -58,6 +61,7 @@ try{
     return res.end('로그인 성공');
 }
 
+    //위에 동기로 동작하는 조건절에서 return 되지 않으면 동작. 즉, 조건절에서 return 시켜야함
     res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8'});
     res.end('잘못된 경로입니다.');
 
