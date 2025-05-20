@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Person from "./components/Person.jsx";
+import {Map, MapMarker, useKakaoLoader} from "react-kakao-maps-sdk";
 
 function App() {
 const [person, setPerson] = useState();
@@ -16,8 +17,17 @@ const mouseOut= () => {
     console.log("마우스 나감");
     setTest(null);
 }
+useKakaoLoader({
+    appkey:"aecbd78ad9c8c047275d66c3905ad492"
+});
   return (
     <>
+        <Map center={{lat:33.5564, lng:126.7981}} style={{width:"100%",height:"500px"}} level={3} >
+            <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
+                <div style={{color:"#000"}}>Hello World!</div>
+            </MapMarker>
+
+        </Map>
         {test &&
         <>
             <Person name={"홍길동"} age={30} position={"right"}/>
