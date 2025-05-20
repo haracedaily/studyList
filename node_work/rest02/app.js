@@ -51,14 +51,16 @@ app.get("/", async (req, res,next) => {
     const conn = await pool.getConnection();
     const result = await conn.execute("SELECT * FROM users");
     conn.release();
-    console.log(req.body);
-    console.log(typeof req.body.age);
-    console.log(req.query);
-    console.log(req.query.name);
-    console.log(req.query.age);
+    // console.log(req.body);
+    // console.log(typeof req.body.age);
+    // console.log(req.query);
+    // console.log(req.query.name);
+    // console.log(req.query.age);
     next();
     /*res.json,send etc.. 끝난다*/
+    console.log(result);
     res.json(result[0]);
+    // res.send(result[0]);
     console.log("돌아오나");
     //res.send => 문자열 , res.json => object, res.sendFile => 파일
     //app.use(err,res,res,next) => 미들웨어 처리
