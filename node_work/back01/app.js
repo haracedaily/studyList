@@ -13,7 +13,7 @@ const cors = require("cors");
 console.log(process.env.COOKIE_SECRET);
 console.log(cors);
 app.use(cors({
-  origin: 'http://localhost:5174', // 허용할 클라이언트의 출처
+  origin: 'https://front01-chi.vercel.app', // 허용할 클라이언트의 출처
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // 쿠키 전달 허용, 대신 사용하려면 origin을 명시해줘야한다.
