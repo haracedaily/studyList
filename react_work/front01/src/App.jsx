@@ -6,7 +6,8 @@ function App() {
     // const [users,setUsers]=useState([{"id":"홍길동","password":"1234"}]);
     const [users,setUsers]=useState(dbusers);
 const getUsers = async (e) =>{
-    const result = await axios.get("http://localhost:8080/");
+    // const result = await axios.get("http://localhost:8080/");
+    const result = await axios.get("https://port-0-studylist-managdgo41797b84.sel4.cloudtype.app/");
     const {data, status} = result;
     console.log(result);
     console.log(data);

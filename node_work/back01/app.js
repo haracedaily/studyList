@@ -9,8 +9,8 @@ const morgan = require("morgan"); // (req,res,next=>{}) 미들웨어'
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const allowedOrigins = [
-  'http://localhost:5174/',
-  'https://front01-chi.vercel.app/',
+  'http://localhost:5174',
+  'https://front01-chi.vercel.app',
   'https://localhost'
 ];
 // 암호화..
