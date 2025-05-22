@@ -8,12 +8,22 @@ const morgan = require("morgan"); // (req,res,next=>{}) 미들웨어'
 // application -> cookie -> 자동으로 날아감
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
+const allowedOrigins = [
+  'http://localhost:5174/',
+  'https://front01-chi.vercel.app/',
+  'https://localhost'
+];
 // 암호화..
 console.log(process.env.COOKIE_SECRET);
 console.log(cors);
 app.use(cors({
-  origin: 'https://front01-chi.vercel.app', // 허용할 클라이언트의 출처
+  origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+        } else {
+        callback(new Error('Not allowed by CORS'));
+        }
+    }, // 허용할 클라이언트의 출처
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // 쿠키 전달 허용, 대신 사용하려면 origin을 명시해줘야한다.
