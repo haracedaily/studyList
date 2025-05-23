@@ -1,9 +1,10 @@
 const pool = require("./db");
-const express = require("express");
-const app = express();
-const path = require("path");
-const morgan = require("morgan"); // (req,res,next=>{}) 미들웨어'
+const express = require("express"); // http 모듈 확장 프레임워크
+const path = require("path"); // 경로 관리 모듈
+const morgan = require("morgan"); // 기록 남기는 모듈
+// (req,res,next=>{}) 미들웨어'
 // localhost:8080/
+const app = express();
 // 쿠키의 평문값은 암호화 키를 사용해서 암호화 처리
 // application -> cookie -> 자동으로 날아감
 const cookieParser = require("cookie-parser");
@@ -14,8 +15,7 @@ const allowedOrigins = [
   'https://localhost'
 ];
 // 암호화..
-console.log(process.env.COOKIE_SECRET);
-console.log(cors);
+console.log(process.env.COOKIE_SECRET);//키값
 app.use(cors({
   origin: (origin, callback) => {
         if (!origin || allowedOrigins.includes(origin)) {
