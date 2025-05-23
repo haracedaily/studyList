@@ -9,6 +9,9 @@ const app = express();
 // application -> cookie -> 자동으로 날아감
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+
+const {supabase} = require("./supadb.js");
+
 const allowedOrigins = [
   'http://localhost:5174',
   'https://front01-chi.vercel.app',
@@ -43,6 +46,17 @@ app.use(express.urlencoded({ extended: false }));
 //단방향 암호화 수업하긴 했지만..
 //여기서는 양방향 암호화처리
 app.use(cookieParser(process.env.COOKIE_SECRET));
+
+//supabase 통신
+app.get("/supausers",(req,res,next)=>{
+    supabase.from("users").select("*").then((data)=>{
+        if(data.status!==200)res.send(data.error);
+        if(data.data?.length>0)res.json(data.data);else res.send("등록된 유저가 없습니다.")}).catch(err=>{
+        console.log(err);
+        res.send(err);
+    });
+})
+
 
 app.use((req, res, next) => {
     // console.log(req.body);
@@ -94,6 +108,9 @@ app.get("/setCoo",(req,res,next)=>{
     // signed 암호화
     res.send("여기옴?");
 })
+
+
+
 
 app.post("/", async (req, res) => {
     const conn = await pool.getConnection(); // 연결 객체 가져오기
