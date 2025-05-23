@@ -16,7 +16,7 @@ const getUsers = async (e) =>{
     setUsers(data);
 }
 const getSupaUsers = async(e)=>{
-    const result = await axios.get("http://localhost:8080/supausers")
+    const result = await axios.get("https://port-0-studylist-managdgo41797b84.sel4.cloudtype.app/supausers")
     console.log(result);
     if(result.status==200){
         // setUsers(result.data);
