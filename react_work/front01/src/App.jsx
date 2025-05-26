@@ -1,14 +1,28 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import './App.css'
 import axios from "axios";
 import dbusers from "./users.json";
+import AirComponent from "./components/AirComponent.jsx";
 function App() {
     // const [users,setUsers]=useState([{"id":"홍길동","password":"1234"}]);
     const [users,setUsers]=useState(dbusers);
     const [supaUser,setSupaUser]=useState(null);
+    const [deferredPrompt, setDeferredPrompt] = useState(null)
+    const [canInstall, setCanInstall] = useState(true)
+
+    useEffect(() => {
+        console.log(canInstall);
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            setDeferredPrompt(e);
+            setCanInstall(true);
+        console.log(canInstall);
+        console.log("???");
+        })
+    }, []);
 const getUsers = async (e) =>{
     // const result = await axios.get("http://localhost:8080/");
-    const result = await axios.get("https://port-0-studylist-managdgo41797b84.sel4.cloudtype.app/");
+    const result = await axios.get(import.meta.env.VITE_BACK_URL);
     const {data, status} = result;
     console.log(result);
     console.log(data);
@@ -16,17 +30,32 @@ const getUsers = async (e) =>{
     setUsers(data);
 }
 const getSupaUsers = async(e)=>{
-    const result = await axios.get("https://port-0-studylist-managdgo41797b84.sel4.cloudtype.app/supausers")
+    const result = await axios.get(import.meta.env.VITE_BACK_URL+"supausers");
     console.log(result);
     if(result.status==200){
         // setUsers(result.data);
         setSupaUser(result.data);
     };
 }
+    const handleInstallClick = async () => {
+    console.log('handleInstallClick');
+        if (deferredPrompt) {
+            deferredPrompt.prompt()
+            const { outcome } = await deferredPrompt.userChoice
+            console.log('User choice:', outcome)
+            setDeferredPrompt(null)
+            setCanInstall(false)
+        }
+    }
   return (
     <>
+
+        <AirComponent/>
         <div>
-      <div className={'text-3xl bg-amber-50'}>ddd</div>
+            {canInstall && (
+                <button onClick={handleInstallClick}>앱 설치하기</button>
+            )}
+      <div className={'text-3xl bg-amber-50'}>안녕</div>
         <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50" onClick={(event)=>{
             getUsers(event);
         }}>mariadb 불러오기</button>
