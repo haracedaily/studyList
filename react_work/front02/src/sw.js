@@ -1,7 +1,7 @@
 import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { NetworkFirst } from 'workbox-strategies';
-
+/*워크박스 프리캐치 전략*/
 precacheAndRoute(self.__WB_MANIFEST);
 cleanupOutdatedCaches();
 
@@ -11,7 +11,6 @@ registerRoute(
 );
 
 self.addEventListener('push', (event) => {
-    console.log('event',event);
     const data = event.data?.json() || {
         title: '기본 제목',
         body: '기본 내용',
@@ -20,7 +19,7 @@ self.addEventListener('push', (event) => {
 
     const options = {
         body: data.body,
-        icon: '/icons/icon-48x48.png',
+        icon: '/icons/icon.svg', // 알림 아이콘
         data: {
             url: data.url // 나중에 클릭 시 이동할 경로
         }

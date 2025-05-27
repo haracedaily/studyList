@@ -18,9 +18,10 @@ function App() {
                 registration.pushManager
                     .subscribe({
                         userVisibleOnly: true,
-                        applicationServerKey: "BCRUQ5WPVsJ5r2mmTedv_VtZE6L3XMJ9ZOFWtzBAvmpKzvpe5W_LHPt5jr8-qq6TZlCXwcSFbMm0xY0cPBzsutk",
+                        applicationServerKey: "BNgqWyxPFLcg-5Z95bQvQoNsymYpYx1VOcca7LRC93671ybRS58GAVd4ESfk1iNEq2pZ56QtZVb0zzW1eCMsTa4",
                     })
                     .then((subscription) => {
+                        console.log("푸시 구독 성공:", subscription);
                         return fetch(`${API_URL}/subscribe`, {
                             method: "POST",
                             body: JSON.stringify(subscription),
