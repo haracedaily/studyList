@@ -98,11 +98,15 @@ function App() {
                         applicationServerKey: "BNgqWyxPFLcg-5Z95bQvQoNsymYpYx1VOcca7LRC93671ybRS58GAVd4ESfk1iNEq2pZ56QtZVb0zzW1eCMsTa4",
                     })
                     .then((subscription) => {
-                        subscription.city= "대구";
-                        console.log("푸시 구독 내용:", subscription);
+                        const subscriptionWithCity = {
+                            ...subscription.toJSON(),
+                            city: '대구',
+                        };
+                        // subscription.city= "대구";
+                        console.log("푸시 구독 내용:", subscriptionWithCity);
                         return fetch(`${API_URL}/subscribe`, {
                             method: "POST",
-                            body: JSON.stringify(subscription),
+                            body: JSON.stringify(subscriptionWithCity),
                             headers: {
                                 "Content-Type": "application/json",
                             },
