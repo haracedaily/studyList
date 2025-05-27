@@ -10,7 +10,7 @@ function App() {
    const API_URL = import.meta.env.VITE_API_NODE_URL;
 
   const [test, setTest] = useState("안녕 test")
-    useEffect(() => {
+/*    useEffect(() => {
         if (Notification.permission === 'granted') {
             console.log('알림이 이미 허용되었습니다.');
             if ("serviceWorker" in navigator && "PushManager" in window) {
@@ -40,7 +40,7 @@ function App() {
 
         }
         // 알림 권한을 요청
-     /*   Notification.requestPermission().then(function(permission) {
+     /!*   Notification.requestPermission().then(function(permission) {
             console.log("권한 값",permission);
             if (permission === 'granted') {
                 console.log('알림이 허용되었습니다.');
@@ -49,9 +49,9 @@ function App() {
             }
         }).catch(function(error) {
             console.error('알림 권한 요청 중 오류 발생:', error);
-        });*/
+        });*!/
 
-    }, []);
+    }, []);*/
   const handleNotification = () => {
       // 알림 권한을 요청
       Notification.requestPermission().then(function(permission) {
@@ -87,6 +87,33 @@ function App() {
     setTest(data);
   }
   //useEffect 화면 렌더링 전부 끝난 후 실행
+    const daeguSub = ()=>{
+        if ("serviceWorker" in navigator && "PushManager" in window) {
+            console.log("sw")
+            navigator.serviceWorker.ready.then((registration) => {
+                console.log("sw ready");
+                registration.pushManager
+                    .subscribe({
+                        userVisibleOnly: true,//엔드포인트 만든다?
+                        applicationServerKey: "BNgqWyxPFLcg-5Z95bQvQoNsymYpYx1VOcca7LRC93671ybRS58GAVd4ESfk1iNEq2pZ56QtZVb0zzW1eCMsTa4",
+                    })
+                    .then((subscription) => {
+                        subscription.city= "대구";
+                        console.log("푸시 구독 내용:", subscription);
+                        return fetch(`${API_URL}/subscribe`, {
+                            method: "POST",
+                            body: JSON.stringify(subscription),
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }).then((response) => console.log(response)).catch((error) => console.error(error));
+                    })
+                    .catch((error) => {
+                        console.error("푸시 구독 실패:", error);
+                    });
+            });
+        }
+    }
   return (
     <>
         <h1>Hello React</h1>
@@ -95,6 +122,7 @@ function App() {
       <button onClick={()=>{
         console.log("get root");
       }}>백엔드 요청</button>
+        <button onClick={daeguSub}>대구 구독</button>
         <button onClick={()=>{handleNotification()}}>권한 요청</button>
     </>
   )
