@@ -43,7 +43,7 @@ app.get("/",(req,res,next)=>{
 app.get("/my",mymid)
 
 
-app.get("subscribe",(req,res,next)=>{
+app.post("/subscribe",(req,res,next)=>{
     console.log(req.body);
     res.send("구독성공");
 })
