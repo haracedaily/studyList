@@ -44,7 +44,7 @@ app.post("/subscribe",(req,res,next)=>{
     console.log(req.body);
     ss.push({sub:req.body});
     console.log(ss);
-    res.send("구독성공");
+    res.json({message:"구독성공",...req.body});
 });
 
 app.get("/send", async (req, res, next) => {

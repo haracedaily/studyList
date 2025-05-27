@@ -26,6 +26,6 @@ self.addEventListener('push', (event) => {
     }
     // notification 보여줘라..
     event.waitUntil(
-        self.registration.showNotification(data.title, options)
+        self.registration.showNotification(data.title, options)// Service Worker의 registration 객체에서 showNotification() 메서드를 호출하여 푸시 알림을 실제로 표시합니다.
     )
 });
