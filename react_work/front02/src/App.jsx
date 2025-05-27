@@ -103,10 +103,16 @@ function App() {
                             city: '대구',
                         };
                         // subscription.city= "대구";
+                        console.log("변경값",{...subscription.toJSON()});
+                        console.log("변경값 2",subscription.toJSON());
+                        console.log("변경값 3",subscription);
+                        console.log("기존 엔드포인트 타입",typeof(subscription.endpoint));
+                        console.log("변환 후 타입",typeof(subscription.toJSON().endpoint));
                         console.log("푸시 구독 내용:", subscriptionWithCity);
                         return fetch(`${API_URL}/subscribe`, {
                             method: "POST",
-                            body: JSON.stringify(subscriptionWithCity),
+                            /*body: JSON.stringify({city:"대구",...subscription.toJSON()}),*/
+                            body: JSON.stringify({city:"대구",sub:subscription.toJSON()}),
                             headers: {
                                 "Content-Type": "application/json",
                             },
