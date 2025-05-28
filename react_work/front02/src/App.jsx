@@ -100,7 +100,7 @@ function App() {
                     .then((subscription) => {
                         const subscriptionWithCity = {
                             ...subscription.toJSON(),
-                            city: '대구',
+                            city: 'daegu',
                         };
                         // subscription.city= "대구";
                         console.log("변경값",{...subscription.toJSON()});
@@ -112,7 +112,7 @@ function App() {
                         return fetch(`${API_URL}/subscribe`, {
                             method: "POST",
                             /*body: JSON.stringify({city:"대구",...subscription.toJSON()}),*/
-                            body: JSON.stringify({city:"대구",sub:subscription.toJSON()}),
+                            body: JSON.stringify({city:"daegu",sub:subscription}),
                             headers: {
                                 "Content-Type": "application/json",
                             },
