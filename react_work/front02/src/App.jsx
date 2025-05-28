@@ -93,26 +93,24 @@ function App() {
             console.log("sw")
             navigator.serviceWorker.ready.then((registration) => {
                 console.log("sw ready");
-                registration.pushManager
-                    .subscribe({
+                registration.pushManager.subscribe({
                         userVisibleOnly: true,//엔드포인트 만든다?
                         applicationServerKey: "BPnnL4q6HiXuXx3eGEH8Uzyq_-l5MKJrmrtJAsRdKUWWf2dRChd2h7QxvlkLBNiFVnQzQBR7XPKkOlSqjIikp-s",
-                    })
-                    .then((subscription) => {
-                        const subscriptionWithCity = {
+                    }).then((subscription) => {
+                        /*const subscriptionWithCity = {
                             ...subscription.toJSON(),
                             city: 'daegu',
                         };
+
                         // subscription.city= "대구";
                         console.log("변경값",{...subscription.toJSON()});
                         console.log("변경값 2",subscription.toJSON());
                         console.log("변경값 3",subscription);
                         console.log("기존 엔드포인트 타입",typeof(subscription.endpoint));
                         console.log("변환 후 타입",typeof(subscription.toJSON().endpoint));
-                        console.log("푸시 구독 내용:", subscriptionWithCity);
+                        console.log("푸시 구독 내용:", subscriptionWithCity);*/
                         return fetch(`${API_URL}/subscribe`, {
                             method: "POST",
-                            /*body: JSON.stringify({city:"대구",...subscription.toJSON()}),*/
                             body: JSON.stringify({city:"daegu",sub:subscription}),
                             headers: {
                                 "Content-Type": "application/json",
