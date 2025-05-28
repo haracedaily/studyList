@@ -95,7 +95,7 @@ function App() {
                 registration.pushManager
                     .subscribe({
                         userVisibleOnly: true,//엔드포인트 만든다?
-                        applicationServerKey: "BNgqWyxPFLcg-5Z95bQvQoNsymYpYx1VOcca7LRC93671ybRS58GAVd4ESfk1iNEq2pZ56QtZVb0zzW1eCMsTa4",
+                        applicationServerKey: "BPnnL4q6HiXuXx3eGEH8Uzyq_-l5MKJrmrtJAsRdKUWWf2dRChd2h7QxvlkLBNiFVnQzQBR7XPKkOlSqjIikp-s",
                     })
                     .then((subscription) => {
                         const subscriptionWithCity = {

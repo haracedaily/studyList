@@ -3,17 +3,18 @@ require("dotenv").config();
 const webpush = require("web-push");
 
 webpush.setVapidDetails('mailto:nj7001@naver.com',
-  'BNgqWyxPFLcg-5Z95bQvQoNsymYpYx1VOcca7LRC93671ybRS58GAVd4ESfk1iNEq2pZ56QtZVb0zzW1eCMsTa4',
-  'n_1GcmidyHf0IUhF2SSyot5G3goJmJxkYeqnegUK7us'
+  'BPnnL4q6HiXuXx3eGEH8Uzyq_-l5MKJrmrtJAsRdKUWWf2dRChd2h7QxvlkLBNiFVnQzQBR7XPKkOlSqjIikp-s',
+  'lr5IwslQ9vhGbddvuwmV6rqhAVMPTNVNRAFhmqnSgPE'
 )
 
 const cors = require("cors");
 
-// const pool = require("./db");
+const pool = require("./db");
 const express = require("express"); 
 const path = require("path"); 
 const morgan = require("morgan"); 
 const cookieParser = require("cookie-parser");
+
 
 
 const mymid=require("./mymiddle");
@@ -39,17 +40,34 @@ app.use((req,res,next)=>{
 //배열이기 때문에 서버 재시작하면 프론트 정보 사라짐
 //DB에 저장 필수.
 const ss = [];
+// 리눅스 crontab
+// node-sche
+// 스케쥴러로 send
+app.post("/subscribe",async (req,res,next)=>{
 
-app.post("/subscribe",(req,res,next)=>{
-    console.log(req.body);
-    console.log(req.body.sub);
-    console.log(req.body.sub.endpoint);
-    console.log(req.body.sub.keys.p256dh);
-    console.log(req.body.sub.keys.auth);
-    console.log(req.body.city);
-    ss.push({sub:req.body});
-    console.log(ss);
-    res.json({message:"구독성공",...req.body});
+    // console.log(req.body.sub);
+    // console.log(req.body.sub.endpoint);
+    // console.log(req.body.sub.keys.p256dh);
+    // console.log(req.body.sub.keys.auth);
+    // console.log(req.body.city);
+    // ss.push({sub:req.body});
+    // console.log(ss);
+    try{
+    console.log("end : ",req.body.sub.endpoint);
+        console.log("p256dh",req.body.sub.keys.p256dh);
+            console.log("auth",req.body.sub.keys.auth);
+                console.log(req.body.city);
+        const conn = await pool.getConnection();
+        const sql = "insert into subscriptions (endpoint,p256dh,auth,city) values(?,?,?,?)";
+        const result = await conn.execute(sql,[req.body.sub.endpoint,req.body.sub.keys.p256dh,req.body.sub.keys.auth,req.body.city]);
+        conn.release();
+        console.log("결과 : ",result);
+        res.json({message:"구독성공",result});
+    }catch(e){
+        console.log(e);
+        res.json({message:"구독실패",e});
+    }
+    
 });
 
 app.get("/send", async (req, res, next) => {
@@ -72,18 +90,36 @@ app.get("/send", async (req, res, next) => {
             res.status(500).send("푸시 알림 전송 실패");
         }); */
         try {
+            // console.log("query",req.query);
+            const city = req.query.city;
+            // console.log("city:",city);
+            const conn = await pool.getConnection();
+            const sql = "select * from subscriptions where city=?";
+            const result = await conn.execute(sql,[city]);
+            
+            conn.release();
             const payload = JSON.stringify({
                 title: "새로운 알림",
                 body: "새로운 정보가 도착하였습니다.",
                 url: "https://front02-two.vercel.app/",
             });
-            const notifications = ss.map( item => {
+            const notifications = result[0].map( item => {
                 console.log("item : ",item);
-                return webpush.sendNotification(item.sub, payload);
+                const temp = {
+                    endpoint:item.endpoint,
+                    expirationTime : null,
+                    keys:{
+                        p256dh:item.p256dh,
+                        auth:item.auth,
+                    },
+                };
+                console.log("temp = ",temp);
+                return webpush.sendNotification(temp, payload);
             });
             console.log("notifications : ",notifications);
             // 모든 푸시 알림 전송을 병렬로 처리
             await Promise.all(notifications);
+            console.log("notifications = ",notifications);
             res.json({message:"푸시알람 전성 성공"})
         } catch (error) {
             console.error("에러 발생:", error);
