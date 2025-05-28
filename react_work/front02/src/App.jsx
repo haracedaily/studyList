@@ -8,6 +8,7 @@ function App() {
 
 
    const API_URL = import.meta.env.VITE_API_NODE_URL;
+   console.log(API_URL);
 
   const [test, setTest] = useState("안녕 test")
 /*    useEffect(() => {
