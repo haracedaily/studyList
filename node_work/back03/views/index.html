@@ -8,6 +8,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>흠음</h1>
+<a href="/multipart">파일업로드</a>
+    <h1>흠음 {{title}}</h1>
+<h2>{{data}}</h2>
+<h2>{{aaa}}</h2>
+<p>
+    {% for person in member %}
+    <hr>
+        <h1>{{person.name}}</h1>
+        <h1>{{person.age}}</h1>
+    <hr>
+    {% endfor %}
+</p>
 </body>
 </html>
