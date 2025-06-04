@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h1>안녕하세요 aa.html</h1>
+{% endblock %}
+
+{% block script %}
+<script>
+    document.querySelector('h1')
+    .addEventListener('click', function (e) {
+        console.log('h1 클릭됨');
+    });
+</script>
+{% endblock %}
+
+{% block style %}
+<style>
+    h1 {
+        color: red;
+        cursor: pointer;
+    }
+    h1:hover {
+        color: blue;
+    }
+</style>
+{% endblock %}

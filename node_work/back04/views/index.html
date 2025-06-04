@@ -1,16 +1,21 @@
+{% set aa="aa입니다" %}
+{% set bb="bb입니다" %}
+{% set fruits = ['사과','배','수박'] %}
+{% set test = true %}
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js" integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Document</title>
-</head>
+{% include "header.html" %}
 <body>
 <!--<a href="/multipart">파일업로드</a>-->
+<h1>aa - {{aa}} bb-{{bb}}</h1>
+<h1>세모괄호 사용 - {{'<span>aa</span>'}} bb-{{'<span>bb</span>' | safe}} </h1>
     <h1>흠음 {{title}}</h1>
+<h1>myname = {{myname}}</h1>
+{% if myname %}
+    <h1>myname이 있다면 - {{myname}}</h1>
+{% else %}
+    <h1>myname이 없다면</h1>
+{% endif %}
 <div>
     <h1>파일 한개 올리기</h1>
     <!--<form action="/upload" method="post" enctype="multipart/form-data">-->
@@ -28,6 +33,9 @@
         <h1>{{person.age}}</h1>
     <hr>
     {% endfor %}
+{% for user in users %}
+<h2>{{user.name}}{{user.age}}</h2>
+{% endfor %}
 </p>
 <script>
     const $btn = document.getElementById('upload-btn');
