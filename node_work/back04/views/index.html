@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js" integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Document</title>
+</head>
+<body>
+<!--<a href="/multipart">파일업로드</a>-->
+    <h1>흠음 {{title}}</h1>
+<div>
+    <h1>파일 한개 올리기</h1>
+    <!--<form action="/upload" method="post" enctype="multipart/form-data">-->
+        <input type="file" id="file" name="image" accept=".png, .jpg, .jpeg">
+        <input type="text" name="title" id="title">
+        <button type="button" id="upload-btn">파일업로드</button>
+    <!--</form>-->
+</div>
+<h2>{{data}}</h2>
+<h2>{{aaa}}</h2>
+<p>
+    {% for person in member %}
+    <hr>
+        <h1>{{person.name}}</h1>
+        <h1>{{person.age}}</h1>
+    <hr>
+    {% endfor %}
+</p>
+<script>
+    const $btn = document.getElementById('upload-btn');
+    $btn.addEventListener('click',async()=>{
+
+    const fileInput = document.getElementById('file');
+    const textInput = document.getElementById('title');
+    const formData = new FormData();
+    formData.append('image', fileInput.files[0]);
+    formData.append('title',textInput.value);
+
+    let res = await axios.post('/upload', formData,{
+        headers:{
+            "Content-type":"myltipart/form-data",
+        }
+    });
+    console.log(res);
+    })
+</script>
+</body>
+</html>
