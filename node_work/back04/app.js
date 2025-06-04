@@ -57,11 +57,18 @@ app.use("/", indexRouter);
 app.use("/user", userRouter);
 app.use("/freeBoard", freeBoardRouter);
 
+app.use((req, res, next) => {
+    console.log("404 에러 미들웨어 동작");
+    const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
+    error.status = 404;
+    next(error); // 에러 미들웨어로 넘김
+})
+
 app.use((err, req, res, next) => {
     console.log("에러 미들웨어 동작");
     console.error(err);
     console.error(err.message);
-    res.send(err.toString());
+    res.send(err.toString()+"<a href='/'>홈으로</a>");
 });
 
 app.listen(app.get("port"), () => {
