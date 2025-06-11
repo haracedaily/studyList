@@ -1,39 +1,66 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
     <h1>기사</h1>
+<div>
 {% for item in data %}
-    <h4>
     예약한 사람 {{loop.index}}
-    </h4>
-    <ul>
+    <div>
+    <ul class="{{item.res_no}}">
         <li>고객명&nbsp;:&nbsp;{{ item.name }}</li>
         <li>연락처&nbsp;:&nbsp;{{ item.tel }}</li>
         <li>이메일&nbsp;:&nbsp;{{ item.email }}</li>
         <li>방문주소&nbsp;:&nbsp;{{ item.addr }}</li>
     </ul>
     <button class="pick" data-id="{{item.res_no}}">내가함</button>
+    </div>
 {% endfor %}
+</div>
+{% endblock %}
+{% block script %}
     <script>
         const pickAry = document.querySelectorAll('.pick');
         pickAry.forEach((el) => {
             el.addEventListener('click', async function(e) {
                 console.log('pick', e);
                 console.log(el.dataset.id+ '번 예약을 선택했습니다.');
-
-                const result = await fetch('http://localhost:4001/gisa/pending',{
-
-                });
+                console.log(el.parentElement.querySelectorAll("ul>li"));
+                const result = await axios.post('/gisa',{
+                    res_no: el.dataset.id,
+                    name: 'user',
+                    tel: '010-1234-5678',
+                    email: 'aaa@naver.com',
+                    addr: '03060,\n                서울 종로구 북촌로1길 9,\n                11',
+                    date: '2025-06-11T00:00:00',
+                    time: '오전 10시 ~ 오후 1시',
+                    model: '삼성',
+                    capacity: '1',
+                    service: '청소',
+                    cycle: '이번 한 번만',
+                    add: '필터 교체',
+                    remark: '',
+                    deposit: 2,
+                    state: 1,
+                    created_at: '2025-06-11'
+                })
+                console.log(result);
+                // const result = await fetch('http://localhost:4001/gisa/pending',{
+                //
+                // });
 
             })
         });
     </script>
-</body>
-</html>
+{% endblock %}
+{% block style %}
+    <style>
+        ul {
+            list-style-type: none;
+        }
+        li {
+            padding: 5px;
+        }
+        button {
+            margin-bottom: 10px;
+        }
+    </style>
+{% endblock %}
