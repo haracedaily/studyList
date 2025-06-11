@@ -5,20 +5,21 @@ const nunjucks = require('nunjucks');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
+const cors = require('cors');
 require('dotenv').config();
 
 // models 폴더에 있는 sequelize 객체를 불러옵니다.
 const { sequelize, User } = require('./models');
-
 const app = express();
-
+/*
 app.set('port', process.env.PORT || 4000);
 app.set('view engine', 'html');
 
 nunjucks.configure('views', {
     express: app,
     watch: true,
-});
+});*/
+
 
 
 // sync 동기화
@@ -29,6 +30,7 @@ sequelize.sync({force:false})//force:true는 테이블을 새로 만듭니다. �
 .catch(console.error);
 
 // User.create({name: '홍길동', age: 20, married: 0, comment:"asdf라는 사람이야"});
+/*
 (async function () {
     // commonjs에서는 사용불가함
     //await를 top 레벨에서 사용하기 위해 즉시 실행 함수로 감쌉니다.
@@ -39,8 +41,9 @@ sequelize.sync({force:false})//force:true는 테이블을 새로 만듭니다. �
     });
     console.log(result);
 })();
+*/
 
-
+app.use(cors()); // CORS 설정
 app.use(morgan("dev"));
 app.use(express.json(), express.urlencoded({ extended: false }));
 app.use("/", express.static(path.join(__dirname, "public")));
@@ -63,8 +66,12 @@ nunjucks.configure("views", {
     express: app,
     watch: true,
 });
-/* 미들웨어 장착 끝 */
+const resRouter = require('./routes/resRouter.js');
+const gisaRouter = require('./routes/gisaRouter.js');
+app.use("/res",resRouter);
+app.use("/gisa", gisaRouter);
 
+/* 미들웨어 장착 끝 */
 app.use((req,res,next)=>{
     console.log('해당하는 라우터가 없다');
     const error = new Error('해당하는 페이지가 없습니다.');
