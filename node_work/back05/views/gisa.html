@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>기사</h1>
+{% for item in data %}
+    <h4>
+    예약한 사람 {{loop.index}}
+    </h4>
+    <ul>
+        <li>고객명&nbsp;:&nbsp;{{ item.name }}</li>
+        <li>연락처&nbsp;:&nbsp;{{ item.tel }}</li>
+        <li>이메일&nbsp;:&nbsp;{{ item.email }}</li>
+        <li>방문주소&nbsp;:&nbsp;{{ item.addr }}</li>
+    </ul>
+    <button class="pick" data-id="{{item.res_no}}">내가함</button>
+{% endfor %}
+    <script>
+        const pickAry = document.querySelectorAll('.pick');
+        pickAry.forEach((el) => {
+            el.addEventListener('click', async function(e) {
+                console.log('pick', e);
+                console.log(el.dataset.id+ '번 예약을 선택했습니다.');
+
+                const result = await fetch('http://localhost:4001/gisa/pending',{
+
+                });
+
+            })
+        });
+    </script>
+</body>
+</html>
