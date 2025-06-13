@@ -9,6 +9,7 @@ const nunjucks = require('nunjucks');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const resRouter = require('./routes/Res');
+const payRouter = require('./routes/pay');
 
 var app = express();
 
@@ -28,5 +29,6 @@ nunjucks.configure("views", {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/reservation', resRouter);
-
+app.use('/pay', payRouter);
+app.use('/cleaner', require('./routes/cleaner'));
 module.exports = app;

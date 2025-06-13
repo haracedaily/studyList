@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block style %}
+{% endblock %}
+{% block content %}
+<h1>성공적으로 결제 하였습니다</h1>
+<a href="/reservation">예약내역 목록</a>
+{% for item in reservation %}
+<div>
+    <h2>예약 정보</h2>
+    <p>예약 ID: {{ item.res_no }}</p>
+    <p>예약 날짜: {{ item.date }}</p>
+    <p>예약 시간: {{ item.time }}</p>
+    <p>예약 상태: {{ item.status }}</p>
+    <p>예약자 이름: {{ item.name }}</p>
+    <p>예약자 연락처: {{ item.tel }}</p>
+    <p>예약자 이메일: {{ item.email }}</p>
+</div>
+{% endfor %}
+{% endblock %}
+{% block script %}
+{% endblock %}
