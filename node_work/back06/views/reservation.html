@@ -13,7 +13,7 @@
 </style>
 {% endblock %}
 {% block content %}
-<div class="container">
+<div class="container" style="padding-bottom: 5rem;">
     <div class="card reservation-card">
         <div class="card-body">
             <h2 class="card-title reservation-title mb-4">예약하기</h2>
@@ -87,8 +87,11 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">이메일</th>
+                <th scope="col">이름</th>
                 <th scope="col">서비스</th>
                 <th scope="col">전화번호</th>
+                <th scope="col">가격</th>
+                <th scope="col">상태</th>
             </tr>
             </thead>
             <tbody>
@@ -96,8 +99,20 @@
             <tr>
                 <th scope="row">{{loop.index}}</th>
                 <td>{{item.email}}</td>
+                <td>{{item.name}}</td>
                 <td>{{item.service}}</td>
                 <td>{{item.tel}}</td>
+                <td>{{item.payment_amount}}</td>
+                <td>
+                    <button class="pay btn btn-{{'success' if item.status == '결제완료' else 'warning'}} btn-sm" data-res-no="{{item.res_no}}">
+                        {% if item.status == '결제대기' %}
+                        <i class="bi bi-check-circle-fill"></i>
+                        {% else %}
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        {% endif %}
+                    {{item.status}}
+                    </button>
+                </td>
             </tr>
             {% endfor %}
             </tbody>
@@ -107,6 +122,23 @@
 {% endblock %}
 {% block script %}
 <script>
+    document.querySelectorAll('.pay').forEach(function(el) {
+        el.addEventListener('click', function() {
+            console.log(el);
+            location.href='/pay/checkout?res_no='+el.dataset.resNo;
+            const status = this.textContent.trim();
+            if (status === '결제대기') {
+                if (confirm("결제를 완료하시겠습니까?")) {
+                    // 결제 완료 로직
+                    this.classList.remove('btn-warning');
+                    this.classList.add('btn-success');
+                    this.innerHTML = '<i class="bi bi-check-circle-fill"></i> 결제완료';
+                }
+            } else {
+                alert("이미 결제가 완료된 예약입니다.");
+            }
+        });
+    });
     document.getElementById('save').addEventListener('click', function() {
         const name = document.getElementById('name').value;
         const tel = document.getElementById('tel').value;
@@ -123,7 +155,23 @@
             alert("모든 필드를 입력해주세요.");
             return;
         }
-
+       /* const formData = {
+            name: document.getElementById('name').value,
+            tel: document.getElementById('tel').value,
+            email: document.getElementById('email').value,
+            addr: document.getElementById('addr').value,
+            date: document.getElementById('date').value,
+            time: document.getElementById('time').value,
+            model: document.getElementById('model').value,
+            capacity: document.getElementById('capacity').value,
+            service: document.getElementById('service').value,
+            remark: document.getElementById('remark').value
+        };*/
+        /*const result = await axios.post('http://localhost:4002/reservation', formData);
+        console.log(result.data);
+        if(result.data === 'success'){
+            alert('예약성공');
+        }*/
         axios.post('/reservation', {
             name: name,
             tel: tel,
@@ -137,7 +185,8 @@
             remark: remark
         })
         .then(function(response) {
-            console.log("예약이 완료되었습니다.");
+            console.log(response);
+            alert("예약이 완료되었습니다.");
             // window.location.reload();
         })
         .catch(function(error) {

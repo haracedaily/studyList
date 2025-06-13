@@ -8,6 +8,26 @@ router.get('/', async function (req, res) {
 })
 router.post('/', async function (req, res) {
     console.log(req.body);
-    res.send("예약이 완료되었습니다.");
+    const {name,tel,email,addr,date,time,model,capacity,service,remark} = req.body;
+
+
+    const result = await supabase.from('ice_res').insert({
+        name,
+        tel,
+        email,
+        addr,
+        date: new Date(date),
+        time,
+        model,
+        capacity,
+        service,
+        remark,
+        payment_amount: 30000
+    });
+    console.log(result);
+    if(!result.error)
+    res.json(result);
+    else
+        res.json(result.data);
 })
 module.exports = router;
