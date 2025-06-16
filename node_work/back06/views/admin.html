@@ -1,0 +1,100 @@
+{% extends 'layout.html' %}
+{% block style %}
+<style>
+
+</style>
+{% endblock %}
+{% block content %}
+<h1>관리자 페이지 </h1>
+<div class="container">
+    <h1>청소기사 등록</h1>
+    <form action="" method="post" onsubmit="return checkForm(this);">
+    <div>
+        <label for="name" class="my-2">이름</label>
+        <input type="text" name="name" id="name" class="form-control" value="홍길동" />
+    </div>
+        <div>
+        <label for="phone" class="my-2">연락처</label>
+        <input type="text" name="phone" id="phone" class="form-control" value="010-1234-5578" />
+    </div>
+        <div>
+        <label for="email" class="my-2">이메일</label>
+        <input type="text" name="email" id="email" class="form-control" value="aaa@naver.com" />
+    </div>
+        <div>
+        <label for="addr" class="my-2">주소</label>
+        <input type="text" name="addr" id="addr" class="form-control" value="대구 달서구" />
+    </div>
+        <div>
+        <label for="mypicture" class="my-2">사진</label>
+            <input type="file" name="mypicture" id="mypicture" class="form-control" />
+        </div>
+        <div class="my-2">
+        <button class="btn btn-primary">저장</button>
+        </div>
+    </form>
+
+    <div>
+        <h1>청소기사 목록</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>연락처</th>
+                    <th>이메일</th>
+                    <th>주소</th>
+                    <th>사진</th>
+                    <th>삭제</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cleaner in cleaners %}
+                <tr>
+                    <td>{{ cleaner.name }}</td>
+                    <td>{{ cleaner.phone }}</td>
+                    <td>{{ cleaner.email }}</td>
+                    <td>{{ cleaner.address }}</td>
+                    <td>{% if cleaner.picture %}<img src="{{ url_for('static', filename='uploads/' + cleaner.picture) }}" alt="Cleaner Picture" class="img-thumbnail" style="max-width: 50px;">{% endif %}</td>
+                    <td>
+                        <form action="/admin/delete/{{ cleaner.id }}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                            <button type="submit" class="btn btn-danger">삭제</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+    {% for cleaner in cleaners %}
+    <div class="card my-2">
+        <div class="card-body">
+            <h5 class="card-title">{{ cleaner.name }}</h5>
+            <p class="card-text">연락처: {{ cleaner.phone }}</p>
+            <p class="card-text">이메일: {{ cleaner.email }}</p>
+            <p class="card-text">주소: {{ cleaner.address }}</p>
+            {% if cleaner.picture %}
+            <img src="{{ url_for('static', filename='uploads/' + cleaner.picture) }}" alt="Cleaner Picture" class="img-thumbnail" style="max-width: 150px;">
+            {% endif %}
+        </div>
+        <div class="card-footer">
+            <form action="/admin/delete/{{ cleaner.id }}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                <button type="submit" class="btn btn-danger">삭제</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block script %}
+<script>
+function checkForm(form) {
+    // 이름이 비어있는지 확인
+    if (form.name.value.trim() === '') {
+        confirm('이름을 입력해주세요.');
+        return false; // 폼 제출 중단
+    }
+    return true; // 폼 제출 허용
+}
+</script>
+{% endblock %}

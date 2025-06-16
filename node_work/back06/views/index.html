@@ -32,6 +32,13 @@
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     </div>
 </div>
+{% if user %}
+<span>환영합니다, {{ user.name }}님!</span>
+<span>전화번호 {{user.phone}}</span>
+<span>email {{user.email}}</span>
+<span>주소 {{user.address}}</span>
+{% endif %}
+
 {% endblock %}
 {% block script %}
 {% endblock %}
