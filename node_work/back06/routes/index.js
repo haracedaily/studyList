@@ -6,8 +6,9 @@ const supabase = require('../utils/supa.js');
 router.get('', async function(req, res, next) {
   const result = await supabase.from('ice_res').select('*');
   console.log(result);
-console.log(req);
-  res.render('index', { title: '홈',request:req });
+
+console.log(req.session.user);
+  res.render('index', { title: '홈',request:req,user:req.session.user });
 });
 
 
