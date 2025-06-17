@@ -14,9 +14,16 @@ const payRouter = require('./routes/pay');
 const adminRouter = require('./routes/admin');
 const cleanerRouter = require('./routes/cleaner');
 const loginRouter = require('./routes/login');
+const backRouter = require('./routes/backApi/admin');
 var app = express();
 
-app.use(cors());
+app.use(cors(
+    {origin: ['http://localhost:5173','http://localhost:5174'],
+        credentials: true, // 쿠키를 포함한 요청을 허용
+        methods: ['GET', 'POST', 'PUT', 'DELETE'], // 허용할 HTTP 메소드
+        // allowedHeaders: ['Content-Type', 'Authorization'] // 허용할 헤더
+    } // 프론트엔드 주소
+));// CORS 설정
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -39,7 +46,10 @@ nunjucks.configure("views", {
     express: app,
     watch: true,
 });
-
+app.use((req, res, next) => {
+    res.locals.user = req.session.user; // 세션에 저장된 사용자 정보
+    next();
+})
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/reservation', resRouter);
@@ -47,4 +57,5 @@ app.use('/pay', payRouter);
 app.use('/cleaner', cleanerRouter);
 app.use('/admin', adminRouter);
 app.use('/login', loginRouter);
+app.use('/back', backRouter);
 module.exports = app;
