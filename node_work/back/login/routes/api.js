@@ -3,6 +3,11 @@ const router = express.Router();
 const supabase = require('../database/db');
 const bcrypt = require('bcryptjs');
 
+const client_id= process.env.KAKAO_CLIENT_ID;
+const redirect_uri= process.env.KAKAO_REDIRECT_URI;
+const client_secret= process.env.KAKAO_CLIENT_SECRET;
+
+
 router.get('/', function (req, res) {
     const data = {};
     data.msg='success';
@@ -66,5 +71,9 @@ router.post('/logout', function (req, res) {
         res.clearCookie('login'); // 쿠키 삭제
         res.json({status: true, message: '로그아웃 성공'});
     })
+})
+
+router.get('/kakaoLogin', function (req, res) {
+    res.redirect(`https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`);
 })
 module.exports = router;
