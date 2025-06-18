@@ -44,6 +44,9 @@ function App() {
        setUser(null);
      }).catch(e => console.log(e));
     }
+    const reqKakaoLogin = async () => {
+        window.location.href= 'http://localhost:4003/api/kakaoLogin';
+    }
   return (
     <>
       {loginStatus ? (<>
@@ -55,8 +58,16 @@ function App() {
         <button onClick={reqLogout}>로그아웃</button>
           </>
             )
-        : (
-        <button onClick={reqLogin}>로그인</button>
+        : (<>
+                  <div>
+
+                <button onClick={reqLogin}>로그인</button>
+                  </div>
+                  <div>
+
+              <button onClick={reqKakaoLogin}>카카오 로그인</button>
+                  </div>
+          </>
       )
       }
       <button onClick={reqMe}>로그인 상태확인</button>

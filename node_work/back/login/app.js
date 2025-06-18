@@ -3,6 +3,8 @@ const cookieParser = require('cookie-parser'); // 쿠키 파서 모듈 불러오
 const session = require('express-session'); // 세션 모듈 불러오기
 const cors = require('cors'); // CORS 모듈 불러오기
 const app = express();
+
+require('dotenv').config();
 const PORT = process.env.PORT||4003; // 서버 포트 번호
 
 app.use(express.json());
@@ -26,6 +28,7 @@ app.use(session({
 }));
 
 app.use('/api', require('./routes/api')); // API 라우터 설정
+app.use('/oauth', require('./routes/oauth')); // OAuth 라우터 설정
 
 app.listen(PORT, () => {
     console.log(`서버가 http://localhost:${PORT}에서 실행 중입니다.`);
