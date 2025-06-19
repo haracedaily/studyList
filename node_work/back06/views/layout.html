@@ -17,33 +17,40 @@
     <ul class="nav nav-underline row justify-content-center flex-row border-bottom m-0 mb-3 w-100">
         <li class="nav-item col-2">
             {% if request.originalUrl === '/' %}
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
             {% else %}
-            <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/">Home</a>
             {% endif %}
         </li>
         <li class="nav-item col-2">
             {% if request.originalUrl === '/admin' %}
-            <a class="nav-link active" aria-current="page" href="/admin">관리자</a>
+                <a class="nav-link active" aria-current="page" href="/admin">관리자</a>
             {% else %}
-            <a class="nav-link" href="/admin">관리자</a>
+                <a class="nav-link" href="/admin">관리자</a>
             {% endif %}
         </li>
         <li class="nav-item col-2">
             {% if request.originalUrl === '/reservation' %}
-            <a class="nav-link active" aria-current="page" href="/reservation">예약</a>
+                <a class="nav-link active" aria-current="page" href="/reservation">예약</a>
             {% else %}
-            <a class="nav-link" href="/reservation">예약</a>
+                <a class="nav-link" href="/reservation">예약</a>
+            {% endif %}
+        </li>
+        <li class="nav-item col-2">
+            {% if request.originalUrl === '/cleaner' %}
+                <a class="nav-link active" href="/cleaner">청소기사</a>
+            {% else %}
+                <a class="nav-link" href="/cleaner">청소기사</a>
             {% endif %}
         </li>
         <li class="nav-item col-2">
             {% if request.originalUrl === '/login' %}
-            <a class="nav-link active" aria-current="page" href="/login">로그인</a>
+                <a class="nav-link active" aria-current="page" href="/login">로그인</a>
             {% else %}
                 {% if request.session.user %}
-                <a class="nav-link" href="/login/logout">로그아웃</a>
+                    <a class="nav-link" href="/login/logout">로그아웃</a>
                 {% else %}
-                <a class="nav-link" href="/login">로그인</a>
+                    <a class="nav-link" href="/login">로그인</a>
                 {% endif %}
             {% endif %}
         </li>
