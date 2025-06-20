@@ -2,19 +2,26 @@ const express= require('express');
 const router = express.Router();
 const supabase = require('../utils/supa.js');
 
+
+const ss = [];
+
 router.get('/', function (req, res) {
     res.render('login.html', { title: '로그인', request: req,user:req.session.user });
 })
 
 router.post('/', async function (req, res) {
-    const { phone, password } = req.body;
+    const sub = req.body.sub; // 3가지 암호화 받을 예정
+    ss.push(sub);
+    const { phone, password, endpoint,p256dh,auth } = req.body;
+    console.log("login : ",endpoint,auth,p256dh);
+console.log(req.body);
     const result = await supabase
         .from('cleaner')
         .select('*')
         .eq('phone', phone)
         .single();
     console.log(result);
-    if( result.data ) {
+    if( result ) {
         req.session.user = result.data;
         console.log('데이터 있음 로그인 성공');
         res.redirect('/');

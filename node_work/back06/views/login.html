@@ -37,18 +37,61 @@
 
 {% block script %}
 <script>
+    let _pushSubscription = null;
+    (async function () {
+        if ('serviceWorker' in navigator && 'PushManager' in window) {
+            try {
+                const reg = await navigator.serviceWorker.register('/service-worker.js');
+                let subscription = await reg.pushManager.getSubscription();
+                if (!subscription) {
+                    const vapidPublicKey = 'BN3RBQuvSX2hPCzy_BPJJ9fDtp0kMVGz5QSVFiTzC4Fm3IyHWUCpbzV6dfLOVYzXTwqJEi4gZc0oE02Y1lJ8iVo';
+                    const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
+                    subscription = await reg.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: convertedVapidKey
+                    });
+                }
+                window._pushSubscription = subscription;
+                _pushSubscription = subscription;
+            } catch (e) {
+                console.warn('푸시 구독 실패:', e);
+            }
+        }
+    })();
+
+    function urlBase64ToUint8Array(base64String) {
+        const padding = '='.repeat((4 - base64String.length % 4) % 4);
+        const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+        const rawData = window.atob(base64);
+        const outputArray = new Uint8Array(rawData.length);
+        for (let i = 0; i < rawData.length; ++i) {
+            outputArray[i] = rawData.charCodeAt(i);
+        }
+        return outputArray;
+    }
     document.getElementById('submit').addEventListener('click', function() {
+        let subscription = _pushSubscription;
+        let pushData = {};
+        if (subscription) {
+            pushData = {
+                endpoint: subscription.endpoint,
+                p256dh: subscription.getKey('p256dh') ? btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('p256dh')))) : '',
+                auth: subscription.getKey('auth') ? btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('auth')))) : ''
+            };
+        }
+
         const phone = document.getElementById('phone').value;
         const password = document.getElementById('password').value;
 
         axios.post('/login', {
             phone: phone,
-            password: password
+            password: password,
+            ...pushData
         })
         .then(function(response) {
-            console.log(response.data);
-            if (response.data.success) {
-                window.location.href = '/';
+            console.log(response);
+            if (response) {
+                // window.location.href = '/';
             } else {
                 alert('로그인 실패: ' + response.data.message);
             }

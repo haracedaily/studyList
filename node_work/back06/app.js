@@ -15,6 +15,14 @@ const adminRouter = require('./routes/admin');
 const cleanerRouter = require('./routes/cleaner');
 const loginRouter = require('./routes/login');
 const backRouter = require('./routes/backApi/admin');
+var webpush = require('web-push');
+
+
+webpush.setVapidDetails(
+    'https://port-0-cleaning-node-managdgo41797b84.sel4.cloudtype.app/',
+    'BN3RBQuvSX2hPCzy_BPJJ9fDtp0kMVGz5QSVFiTzC4Fm3IyHWUCpbzV6dfLOVYzXTwqJEi4gZc0oE02Y1lJ8iVo',
+    'rJ9GupKpi3ZUcauY11BckXPZ_9hWz4HpQYcCmoLrwI4'
+)
 var app = express();
 
 app.use(cors(
