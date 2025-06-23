@@ -8,12 +8,12 @@ self.addEventListener('install', event => {
   self.skipWaiting(); // 설치 후 즉시 활성화
 });
 
-// 오프라인일때 동작
+// 오프라인일때 동작 //오래된 캐시 삭제
 self.addEventListener('activate', event => {
   console.log('[Service Worker] Activated');
 });
 
-// 오프라인에서 처리 요청되면
+// 오프라인에서 처리 요청되면 캐시 vs 네트워크
 self.addEventListener('fetch', event => {
   // 기본 네트워크 요청 처리
   event.respondWith(fetch(event.request));
