@@ -1,0 +1,11 @@
+E:\studyList\cs_work\chap06\Winform\bin\Debug\Winform.exe.config
+E:\studyList\cs_work\chap06\Winform\bin\Debug\Winform.exe
+E:\studyList\cs_work\chap06\Winform\bin\Debug\Winform.pdb
+E:\studyList\cs_work\chap06\Winform\obj\Debug\Winform.csproj.AssemblyReference.cache
+E:\studyList\cs_work\chap06\Winform\obj\Debug\Winform.Properties.Resources.resources
+E:\studyList\cs_work\chap06\Winform\obj\Debug\Winform.csproj.GenerateResource.cache
+E:\studyList\cs_work\chap06\Winform\obj\Debug\Winform.csproj.CoreCompileInputs.cache
+E:\studyList\cs_work\chap06\Winform\obj\Debug\Winform.exe
+E:\studyList\cs_work\chap06\Winform\obj\Debug\Winform.pdb
+E:\studyList\cs_work\chap06\Winform\obj\Debug\Winform.exe.config
+E:\studyList\cs_work\chap06\Winform\obj\Debug\Winform.Form1.resources
