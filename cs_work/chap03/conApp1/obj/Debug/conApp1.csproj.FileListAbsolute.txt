@@ -1,0 +1,8 @@
+E:\studyList\cs_work\chap03\conApp1\bin\Debug\conApp1.exe.config
+E:\studyList\cs_work\chap03\conApp1\bin\Debug\conApp1.exe
+E:\studyList\cs_work\chap03\conApp1\bin\Debug\conApp1.pdb
+E:\studyList\cs_work\chap03\conApp1\obj\Debug\conApp1.csproj.AssemblyReference.cache
+E:\studyList\cs_work\chap03\conApp1\obj\Debug\conApp1.csproj.CoreCompileInputs.cache
+E:\studyList\cs_work\chap03\conApp1\obj\Debug\conApp1.exe
+E:\studyList\cs_work\chap03\conApp1\obj\Debug\conApp1.pdb
+E:\studyList\cs_work\chap03\conApp1\obj\Debug\conApp1.exe.config
