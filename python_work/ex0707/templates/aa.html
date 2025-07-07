@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello, Flask!</h1>
+    <form action="/aa" method="post">
+        <input type="text" name="name" placeholder="Enter your name">
+        x: <input type="text" name="x" placeholder="Enter data">
+        y: <input type="text" name="y" placeholder="Enter data">
+        <button type="submit">Submit</button>
+    </form>
+    <h1>
+        {% if result is not none %}
+            Result: {{ result }}
+        {% else %}
+            No result yet.
+        {% endif %}
+    </h1>
+{% if img_data %}
+        <h3>예측 시각화 결과</h3>
+        <img src="data:image/png;base64,{{ img_data }}" alt="그래프">
+    {% endif %}
+</body>
+</html>
