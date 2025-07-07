@@ -5,7 +5,6 @@
 
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
-
 #최근접 이웃 알고리즘 숫자 입력들어오면
 a_x = [3,4,5,6,7]
 a_y = [12,14,11,13,10]
