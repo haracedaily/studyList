@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/aa" method="post">
+        <label for="length">길이:</label>
+        <input type="text" id="length" name="length">
+        <button type="submit">전송</button>
+    </form>
+    {% if result is not none %}
+    <p>추측무게(g) : {{ result }}</p>
+    {% endif %}
+    {% if img_data %}
+    <h3>예측 시각화 결과</h3>
+    <img src="data:image/png;base64,{{ img_data }}" alt="그래프">
+    {% endif %}
+</body>
+</html>
