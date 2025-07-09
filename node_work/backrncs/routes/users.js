@@ -3,6 +3,7 @@ const User = require('../schemas/users');
 
 router.post("/register", async (req, res) => {
     try {
+        //insert 구문
         const { username, password, email } = req.body;
         const newUser = new User({ username, password, email });
         let result = await newUser.save();
@@ -15,6 +16,7 @@ router.post("/register", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
+        //select 구문
         const users = await User.find();
         console.log("결과 : ", users);
         res.status(201).json(users);
