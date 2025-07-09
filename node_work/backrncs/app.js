@@ -4,7 +4,11 @@ const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const logger = require('morgan');
 
+const { MONGO_PASSWORD, MONGO_USER, MONGO_HOST, MONGO_PORT, MONGO_DB } = process.env;
 require("dotenv").config();  // .env)
+const mongo = require("./schemas");
+mongo();
+
 const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 4040;
@@ -29,8 +33,9 @@ app.use(expressSession({
 }));
 
 let indexRouter = require('./routes/index');
-
+let usersRouter = require('./routes/users');
 app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
