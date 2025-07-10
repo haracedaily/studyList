@@ -10,11 +10,7 @@ const users = new mongoose.Schema(
             type: String,
             required: true
         },
-        email: {
-            type: String,
-            required: true,
-            unique: true
-        },
+        email:String,
         createdAt: {
             type: Date,
             default: Date.now

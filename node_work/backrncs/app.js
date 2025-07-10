@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');//http프로토콜 브라우저는 규격상 쿠키가 존재하지만 리액트 네이티브(모바일)환경에서는 불가능함
 const expressSession = require('express-session');
 const logger = require('morgan');
+
 
 const { MONGO_PASSWORD, MONGO_USER, MONGO_HOST, MONGO_PORT, MONGO_DB } = process.env;
 require("dotenv").config();  // .env)
