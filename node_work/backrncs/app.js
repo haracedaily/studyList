@@ -35,8 +35,10 @@ app.use(expressSession({
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
+let authRouter = require('./routes/auth');
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auths',authRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
